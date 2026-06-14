@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-soft: var(--primary-soft);
+  --color-cream: var(--cream);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-glass: var(--glass);
+  --color-glow: var(--glow);
+  --color-surface: var(--surface);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-fade-in-up: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  --font-sans: var(--font-plus-jakarta-sans), system-ui, sans-serif;
+}
+
+:root {
+  --background: #FCFDFD;
+  --foreground: #152728;
+  --primary: #088E92;
+  --primary-dark: #045B5D;
+  --primary-soft: #E6F4F5;
+  --cream: #F0F7F7;
+  --muted: #567072;
+  --border: rgba(8, 142, 146, 0.16);
+  --card: rgba(255, 255, 255, 0.72);
+  --glass: rgba(252, 253, 253, 0.72);
+  --glow: rgba(8, 142, 146, 0.32);
+  --surface: #ffffff;
+  
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+}
+
+.dark {
+  --background: #091213;
+  --foreground: #E7ECEC;
+  --primary: #00AFB4;
+  --primary-dark: #088E92;
+  --primary-soft: #112325;
+  --cream: #0F1E20;
+  --muted: #8FA4A6;
+  --border: rgba(0, 175, 180, 0.14);
+  --card: rgba(15, 30, 32, 0.74);
+  --glass: rgba(15, 30, 32, 0.68);
+  --glow: rgba(0, 175, 180, 0.24);
+  --surface: #0f1e20;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px var(--glow);
+  }
+  50% {
+    box-shadow: 0 0 25px var(--glow);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html, body {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Glassmorphism helpers */
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+.glass-navbar {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-soft);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Markdown styling */
+.prose {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.prose h1, .prose h2, .prose h3 {
+  font-weight: 700;
+  color: var(--foreground);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+.prose h1 { font-size: 2rem; }
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.25rem; }
+.prose p {
+  margin-bottom: 1.25em;
+  color: var(--foreground);
+  opacity: 0.9;
+}
+.prose ul, .prose ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+.prose li { margin-bottom: 0.5em; }
+.prose strong { color: var(--foreground); font-weight: 600; }
+.prose blockquote {
+  border-left: 4px solid var(--primary);
+  padding-left: 1em;
+  font-style: italic;
+  opacity: 0.8;
+  margin: 1.5em 0;
+}
+.prose code {
+  background: var(--primary-soft);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.prose img {
+  border-radius: 12px;
+  margin: 1.5em 0;
+}
