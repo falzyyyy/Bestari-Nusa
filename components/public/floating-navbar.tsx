@@ -24,11 +24,7 @@ export default function FloatingNavbar() {
   // Monitor scroll height to trigger shrink effect
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -41,7 +37,7 @@ export default function FloatingNavbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-6 pt-4 md:pt-6 transition-all duration-500">
+      <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-6 pt-4 md:pt-6 transition-all duration-300">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

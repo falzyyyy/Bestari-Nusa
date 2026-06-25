@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { Plus, Edit2, Trash2, X, Sparkles, HelpCircle } from "lucide-react";
 import { db } from "@/lib/supabase";
 import { Program, Category } from "@/lib/store";
+import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
+import ConfirmDialog from "@/components/admin/confirm-dialog";
 
 export default function ProgramsCrud() {
   const searchParams = useSearchParams();
@@ -18,6 +21,17 @@ export default function ProgramsCrud() {
   const [objectivesText, setObjectivesText] = useState("");
   const [metricsText, setMetricsText] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+  }>({
+    isOpen: false,
+    title: "",
+    message: "",
+    onConfirm: () => {}
+  });
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -27,8 +41,9 @@ export default function ProgramsCrud() {
       const { uploadImage } = await import("@/lib/upload");
       const url = await uploadImage(file);
       setFormData(prev => ({ ...prev, cover_image: url }));
+      toast.success("Foto program berhasil diunggah!");
     } catch (err: any) {
-      alert(err.message || "Gagal mengunggah gambar");
+      toast.error(err.message || "Gagal mengunggah gambar");
     } finally {
       setUploading(false);
     }
@@ -151,7 +166,7 @@ export default function ProgramsCrud() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.title || !formData.slug || !formData.summary) {
-      alert("Harap lengkapi semua kolom wajib.");
+      toast.warning("Harap lengkapi semua kolom wajib.");
       return;
     }
 
@@ -183,23 +198,32 @@ export default function ProgramsCrud() {
       await db.saveProgram(submitData);
       setIsFormOpen(false);
       loadProgramsAndCategories();
+      toast.success("Program kerja berhasil disimpan!");
     } catch (err: any) {
-      alert(`Gagal menyimpan program: ${err.message || err}`);
+      toast.error(`Gagal menyimpan program: ${err.message || err}`);
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (confirm("Apakah Anda yakin ingin menghapus program ini?")) {
-      try {
-        const success = await db.deleteProgram(id);
-        if (success) {
-          loadProgramsAndCategories();
-        } else {
-          alert("Gagal menghapus program.");
-        }
-      } catch (err) {
-        console.error(err);
+  const handleDelete = (id: string) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Hapus Program Kerja",
+      message: "Apakah Anda yakin ingin menghapus program kerja ini? Seluruh data program dan metrik terkait akan dihapus secara permanen.",
+      onConfirm: () => handleDeleteConfirmed(id)
+    });
+  };
+
+  const handleDeleteConfirmed = async (id: string) => {
+    try {
+      const success = await db.deleteProgram(id);
+      if (success) {
+        loadProgramsAndCategories();
+        toast.success("Program kerja berhasil dihapus.");
+      } else {
+        toast.error("Gagal menghapus program.");
       }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -221,20 +245,37 @@ export default function ProgramsCrud() {
       </div>
 
       {/* Editor Drawer Overlay */}
-      {isFormOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-end">
-          <div className="w-full max-w-2xl bg-background border-l border-border h-full flex flex-col p-6 overflow-y-auto space-y-6">
+      <AnimatePresence>
+        {isFormOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-end">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsFormOpen(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer"
+            />
             
-            <div className="flex items-center justify-between border-b border-border pb-4">
-              <h3 className="text-lg font-bold text-foreground">
-                {editingProgram ? "Edit Program Kerja" : "Tambah Program Kerja"}
-              </h3>
-              <button onClick={() => setIsFormOpen(false)} className="p-1 hover:bg-border rounded cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            {/* Animated drawer content container */}
+            <motion.div
+              initial={{ x: "100%", opacity: 0.9 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0.9 }}
+              transition={{ type: "spring", damping: 26, stiffness: 220 }}
+              className="relative w-full max-w-2xl bg-background border-l border-border h-full flex flex-col p-6 overflow-y-auto space-y-6 z-10"
+            >
+              
+              <div className="flex items-center justify-between border-b border-border pb-4">
+                <h3 className="text-lg font-bold text-foreground">
+                  {editingProgram ? "Edit Program Kerja" : "Tambah Program Kerja"}
+                </h3>
+                <button onClick={() => setIsFormOpen(false)} className="p-1 hover:bg-border rounded cursor-pointer">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5 text-xs md:text-sm">
+              <form onSubmit={handleSubmit} className="space-y-5 text-xs md:text-sm">
               {/* Title */}
               <div className="space-y-1.5">
                 <label className="font-bold text-foreground">Nama Program *</label>
@@ -520,9 +561,10 @@ export default function ProgramsCrud() {
 
             </form>
 
-          </div>
+          </motion.div>
         </div>
       )}
+    </AnimatePresence>
 
       {/* Programs List Table Grid */}
       <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
@@ -604,6 +646,14 @@ export default function ProgramsCrud() {
           </div>
         )}
       </div>
+
+      <ConfirmDialog
+        isOpen={confirmDialog.isOpen}
+        title={confirmDialog.title}
+        message={confirmDialog.message}
+        onConfirm={confirmDialog.onConfirm}
+        onCancel={() => setConfirmDialog(prev => ({ ...prev, isOpen: false }))}
+      />
 
     </div>
   );

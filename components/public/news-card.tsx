@@ -11,19 +11,19 @@ export default function NewsCard({ post, categoryName = "Riset Aksi" }: NewsCard
   return (
     <Link 
       href={`/news/${post.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-300 w-full"
+      className="group flex flex-col overflow-hidden rounded-md border border-border bg-card/65 hover:border-primary/40 hover:shadow-sm transition-all duration-[800ms] ease-[0.16,1,0.3,1] w-full"
     >
-      {/* Cover Image */}
-      <div className="relative aspect-video w-full overflow-hidden bg-primary-soft/10">
+      {/* Cover Image with Grayscale Filter & Slow Custom Zoom */}
+      <div className="relative aspect-[3/2] w-full overflow-hidden bg-primary-soft/10">
         <img
-          src={post.cover_image || "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800&h=500"}
+          src={post.cover_image || "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800&h=550"}
           alt={post.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover grayscale saturate-[0.8] brightness-[0.95] group-hover:grayscale-0 group-hover:saturate-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-[800ms] ease-[0.16,1,0.3,1]"
           loading="lazy"
         />
-        {/* Category Tag overlay */}
+        {/* Category Tag overlay - Vintage Label */}
         <div className="absolute top-4 left-4">
-          <span className="px-2.5 py-1 bg-white/90 dark:bg-card/90 text-primary-dark dark:text-primary text-[10px] font-bold uppercase tracking-wider rounded border border-border/20 shadow-sm">
+          <span className="px-2.5 py-1 bg-white/95 dark:bg-card/95 text-primary text-[9px] font-bold uppercase tracking-widest rounded border border-border/20 shadow-sm">
             {categoryName}
           </span>
         </div>
@@ -32,7 +32,7 @@ export default function NewsCard({ post, categoryName = "Riset Aksi" }: NewsCard
       {/* Card Body content */}
       <div className="flex flex-col p-6 flex-grow">
         {/* Metadata bar */}
-        <div className="flex items-center gap-3.5 text-xs text-muted mb-2.5">
+        <div className="flex items-center gap-3.5 text-xs text-muted mb-3">
           {post.published_at && (
             <div className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5 text-primary" />
@@ -46,7 +46,7 @@ export default function NewsCard({ post, categoryName = "Riset Aksi" }: NewsCard
         </div>
 
         {/* Title */}
-        <h3 className="text-base md:text-lg font-bold tracking-tight mb-2 text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
+        <h3 className="text-base md:text-lg font-bold tracking-tight mb-2.5 text-foreground group-hover:text-primary transition-colors duration-500 line-clamp-2">
           {post.title}
         </h3>
         

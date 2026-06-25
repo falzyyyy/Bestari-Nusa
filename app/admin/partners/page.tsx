@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { Plus, Edit2, Trash2, X, Handshake, Sparkles } from "lucide-react";
 import { db } from "@/lib/supabase";
 import { Partner } from "@/lib/store";
+import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
+import ConfirmDialog from "@/components/admin/confirm-dialog";
 
 export default function PartnersCrud() {
   const searchParams = useSearchParams();
@@ -15,6 +18,17 @@ export default function PartnersCrud() {
   const [editingPartner, setEditingPartner] = useState<Partial<Partner> | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+  }>({
+    isOpen: false,
+    title: "",
+    message: "",
+    onConfirm: () => {}
+  });
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -24,8 +38,9 @@ export default function PartnersCrud() {
       const { uploadImage } = await import("@/lib/upload");
       const url = await uploadImage(file);
       setFormData(prev => ({ ...prev, logo: url }));
+      toast.success("Logo partner berhasil diunggah!");
     } catch (err: any) {
-      alert(err.message || "Gagal mengunggah gambar");
+      toast.error(err.message || "Gagal mengunggah gambar");
     } finally {
       setUploading(false);
     }
@@ -110,7 +125,7 @@ export default function PartnersCrud() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name) {
-      alert("Harap lengkapi semua kolom wajib.");
+      toast.warning("Harap lengkapi semua kolom wajib.");
       return;
     }
 
@@ -118,23 +133,32 @@ export default function PartnersCrud() {
       await db.savePartner(formData);
       setIsFormOpen(false);
       loadPartners();
+      toast.success("Partner berhasil disimpan!");
     } catch (err: any) {
-      alert(`Gagal menyimpan partner: ${err.message || err}`);
+      toast.error(`Gagal menyimpan partner: ${err.message || err}`);
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (confirm("Apakah Anda yakin ingin menghapus partner ini?")) {
-      try {
-        const success = await db.deletePartner(id);
-        if (success) {
-          loadPartners();
-        } else {
-          alert("Gagal menghapus partner.");
-        }
-      } catch (err) {
-        console.error(err);
+  const handleDelete = (id: string) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Hapus Partner",
+      message: "Apakah Anda yakin ingin menghapus partner/mitra ini dari daftar? Tindakan ini tidak dapat dibatalkan.",
+      onConfirm: () => handleDeleteConfirmed(id)
+    });
+  };
+
+  const handleDeleteConfirmed = async (id: string) => {
+    try {
+      const success = await db.deletePartner(id);
+      if (success) {
+        loadPartners();
+        toast.success("Partner berhasil dihapus.");
+      } else {
+        toast.error("Gagal menghapus partner.");
       }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -156,20 +180,37 @@ export default function PartnersCrud() {
       </div>
 
       {/* Editor Drawer Overlay */}
-      {isFormOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-end">
-          <div className="w-full max-w-xl bg-background border-l border-border h-full flex flex-col p-6 overflow-y-auto space-y-6">
+      <AnimatePresence>
+        {isFormOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-end">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsFormOpen(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer"
+            />
             
-            <div className="flex items-center justify-between border-b border-border pb-4">
-              <h3 className="text-lg font-bold text-foreground">
-                {editingPartner ? "Edit Partner" : "Tambah Partner"}
-              </h3>
-              <button onClick={() => setIsFormOpen(false)} className="p-1 hover:bg-border rounded cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            {/* Animated drawer content container */}
+            <motion.div
+              initial={{ x: "100%", opacity: 0.9 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0.9 }}
+              transition={{ type: "spring", damping: 26, stiffness: 220 }}
+              className="relative w-full max-w-xl bg-background border-l border-border h-full flex flex-col p-6 overflow-y-auto space-y-6 z-10"
+            >
+              
+              <div className="flex items-center justify-between border-b border-border pb-4">
+                <h3 className="text-lg font-bold text-foreground">
+                  {editingPartner ? "Edit Partner" : "Tambah Partner"}
+                </h3>
+                <button onClick={() => setIsFormOpen(false)} className="p-1 hover:bg-border rounded cursor-pointer">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5 text-xs md:text-sm">
+              <form onSubmit={handleSubmit} className="space-y-5 text-xs md:text-sm">
               {/* Name */}
               <div className="space-y-1.5">
                 <label className="font-bold text-foreground">Nama Partner *</label>
@@ -305,9 +346,10 @@ export default function PartnersCrud() {
 
             </form>
 
-          </div>
+          </motion.div>
         </div>
       )}
+    </AnimatePresence>
 
       {/* Partners list table grid */}
       <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
@@ -398,6 +440,14 @@ export default function PartnersCrud() {
           </div>
         )}
       </div>
+
+      <ConfirmDialog
+        isOpen={confirmDialog.isOpen}
+        title={confirmDialog.title}
+        message={confirmDialog.message}
+        onConfirm={confirmDialog.onConfirm}
+        onCancel={() => setConfirmDialog(prev => ({ ...prev, isOpen: false }))}
+      />
 
     </div>
   );

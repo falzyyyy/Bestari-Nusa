@@ -42,7 +42,12 @@ export default function LoginPage() {
           email: data.email,
           password: data.password
         });
-        if (error) throw error;
+        
+        if (error) {
+          setErrorMsg(error.message);
+          setLoading(false);
+          return;
+        }
         
         // Save simple local flag
         localStorage.setItem("bestari_session", "true");

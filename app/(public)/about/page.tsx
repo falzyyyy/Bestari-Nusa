@@ -55,35 +55,35 @@ export default function AboutPage() {
       </section>
 
       {/* 4. Visi & Misi */}
-      <section className="w-full py-16 bg-[#1F2A24] dark:bg-[#0E1712] text-[#FFF6DE]">
+      <section className="w-full py-20 bg-[#091213] dark:bg-[#050B0C] text-[#E7ECEC]">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
           
           {/* Visi */}
           <div className="space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-[#A7C77D] flex items-center gap-2">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-[#00AFB4] flex items-center gap-2">
               <Compass className="w-4 h-4" /> VISI UTAMA
             </h3>
-            <p className="text-xl md:text-2xl font-extrabold text-white leading-snug">
-              Menjadi episentrum kepemimpinan pemuda berbasis riset guna melahirkan komunitas nusantara yang mandiri, berdaya saing, dan lestari secara lingkungan.
+            <p className="text-2xl md:text-3xl font-serif font-light italic text-white leading-normal">
+              &ldquo;Menjadi episentrum kepemimpinan pemuda berbasis riset guna melahirkan komunitas nusantara yang mandiri, berdaya saing, dan lestari secara lingkungan.&rdquo;
             </p>
           </div>
 
           {/* Misi */}
           <div className="space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-[#A7C77D] flex items-center gap-2">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-[#00AFB4] flex items-center gap-2">
               <Award className="w-4 h-4" /> MISI KERJA
             </h3>
-            <ul className="space-y-3.5 text-sm md:text-base text-[#CFC7B0]">
-              <li className="flex items-start gap-2.5">
-                <span className="w-5 h-5 rounded-full bg-[#A7C77D]/20 text-[#A7C77D] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">1</span>
+            <ul className="space-y-4 text-sm md:text-base text-[#8FA4A6]">
+              <li className="flex items-start gap-3">
+                <span className="w-5 h-5 rounded-full bg-[#00AFB4]/15 text-[#00AFB4] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">1</span>
                 <span>Membina kepemimpinan pemuda pasca-kampus melalui inkubasi program aksi nyata berdasar data.</span>
               </li>
-              <li className="flex items-start gap-2.5">
-                <span className="w-5 h-5 rounded-full bg-[#A7C77D]/20 text-[#A7C77D] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">2</span>
+              <li className="flex items-start gap-3">
+                <span className="w-5 h-5 rounded-full bg-[#00AFB4]/15 text-[#00AFB4] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">2</span>
                 <span>Menyelenggarakan social mapping dan riset partisipatif untuk perancangan kebijakan CSR & sosial.</span>
               </li>
-              <li className="flex items-start gap-2.5">
-                <span className="w-5 h-5 rounded-full bg-[#A7C77D]/20 text-[#A7C77D] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">3</span>
+              <li className="flex items-start gap-3">
+                <span className="w-5 h-5 rounded-full bg-[#00AFB4]/15 text-[#00AFB4] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">3</span>
                 <span>Mengembangkan kemitraan pentahelix guna mengakselerasi program pemberdayaan ekonomi kreatif lokal.</span>
               </li>
             </ul>

@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import { Providers } from "@/components/providers";
+import BackgroundPatterns from "@/components/public/background-patterns";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -49,9 +58,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${plusJakartaSans.variable}`} suppressHydrationWarning>
-      <body className="font-sans antialiased bg-background text-foreground min-h-screen flex flex-col">
+    <html lang="id" className={`${plusJakartaSans.variable} ${playfairDisplay.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased bg-background text-foreground min-h-screen flex flex-col relative">
         <Providers>
+          <BackgroundPatterns />
+          <Toaster richColors closeButton position="top-right" theme="dark" />
           {children}
         </Providers>
       </body>

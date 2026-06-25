@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Mail, Trash2, Check, Clock, User, Phone, MapPin, Sparkles, Filter } from "lucide-react";
 import { db } from "@/lib/supabase";
 import { Inquiry } from "@/lib/store";
+import { toast } from "sonner";
+import ConfirmDialog from "@/components/admin/confirm-dialog";
 
 export default function InquiriesCrud() {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
@@ -14,6 +16,17 @@ export default function InquiriesCrud() {
   // Internal notes draft state
   const [notesDraft, setNotesDraft] = useState("");
   const [notesSaving, setNotesSaving] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+  }>({
+    isOpen: false,
+    title: "",
+    message: "",
+    onConfirm: () => {}
+  });
 
   const loadInquiries = async () => {
     setLoading(true);
@@ -73,28 +86,40 @@ export default function InquiriesCrud() {
           prev.map(i => i.id === selectedInquiry.id ? { ...i, internal_notes: notesDraft } : i)
         );
         setSelectedInquiry(prev => prev ? { ...prev, internal_notes: notesDraft } : null);
-        alert("Catatan internal berhasil disimpan!");
+        toast.success("Catatan internal berhasil disimpan!");
       }
     } catch (e) {
+      toast.error("Gagal menyimpan catatan internal.");
       console.error(e);
     } finally {
       setNotesSaving(false);
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (confirm("Apakah Anda yakin ingin menghapus pesan ini?")) {
-      try {
-        const success = await db.deleteInquiry(id);
-        if (success) {
-          if (selectedInquiry && selectedInquiry.id === id) {
-            setSelectedInquiry(null);
-          }
-          loadInquiries();
+  const handleDelete = (id: string) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Hapus Pesan Masuk",
+      message: "Apakah Anda yakin ingin menghapus pesan masuk ini dari database? Tindakan ini tidak dapat dibatalkan.",
+      onConfirm: () => handleDeleteConfirmed(id)
+    });
+  };
+
+  const handleDeleteConfirmed = async (id: string) => {
+    try {
+      const success = await db.deleteInquiry(id);
+      if (success) {
+        if (selectedInquiry && selectedInquiry.id === id) {
+          setSelectedInquiry(null);
         }
-      } catch (e) {
-        console.error(e);
+        loadInquiries();
+        toast.success("Pesan berhasil dihapus.");
+      } else {
+        toast.error("Gagal menghapus pesan.");
       }
+    } catch (e) {
+      toast.error("Terjadi kesalahan saat menghapus pesan.");
+      console.error(e);
     }
   };
 
@@ -310,6 +335,14 @@ export default function InquiriesCrud() {
         </div>
 
       </div>
+
+      <ConfirmDialog
+        isOpen={confirmDialog.isOpen}
+        title={confirmDialog.title}
+        message={confirmDialog.message}
+        onConfirm={confirmDialog.onConfirm}
+        onCancel={() => setConfirmDialog(prev => ({ ...prev, isOpen: false }))}
+      />
 
     </div>
   );

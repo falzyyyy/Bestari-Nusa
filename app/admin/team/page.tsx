@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { Plus, Edit2, Trash2, X, Users, Sparkles } from "lucide-react";
 import { db } from "@/lib/supabase";
 import { TeamMember, Division } from "@/lib/store";
+import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
+import ConfirmDialog from "@/components/admin/confirm-dialog";
 
 export default function TeamCrud() {
   const searchParams = useSearchParams();
@@ -16,6 +19,17 @@ export default function TeamCrud() {
   const [editingMember, setEditingMember] = useState<Partial<TeamMember> | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+  }>({
+    isOpen: false,
+    title: "",
+    message: "",
+    onConfirm: () => {}
+  });
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -25,8 +39,9 @@ export default function TeamCrud() {
       const { uploadImage } = await import("@/lib/upload");
       const url = await uploadImage(file);
       setFormData(prev => ({ ...prev, photo: url }));
+      toast.success("Foto profil berhasil diunggah!");
     } catch (err: any) {
-      alert(err.message || "Gagal mengunggah gambar");
+      toast.error(err.message || "Gagal mengunggah gambar");
     } finally {
       setUploading(false);
     }
@@ -131,7 +146,7 @@ export default function TeamCrud() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.position) {
-      alert("Harap lengkapi semua kolom wajib.");
+      toast.warning("Harap lengkapi semua kolom wajib.");
       return;
     }
 
@@ -148,23 +163,32 @@ export default function TeamCrud() {
       await db.saveTeamMember(submitData);
       setIsFormOpen(false);
       loadMembersAndDivisions();
+      toast.success("Anggota tim berhasil disimpan!");
     } catch (err: any) {
-      alert(`Gagal menyimpan anggota: ${err.message || err}`);
+      toast.error(`Gagal menyimpan anggota: ${err.message || err}`);
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (confirm("Apakah Anda yakin ingin menghapus anggota tim ini?")) {
-      try {
-        const success = await db.deleteTeamMember(id);
-        if (success) {
-          loadMembersAndDivisions();
-        } else {
-          alert("Gagal menghapus anggota.");
-        }
-      } catch (err) {
-        console.error(err);
+  const handleDelete = (id: string) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Hapus Anggota Tim",
+      message: "Apakah Anda yakin ingin menghapus anggota tim ini dari struktur pengurus? Tindakan ini tidak dapat dibatalkan.",
+      onConfirm: () => handleDeleteConfirmed(id)
+    });
+  };
+
+  const handleDeleteConfirmed = async (id: string) => {
+    try {
+      const success = await db.deleteTeamMember(id);
+      if (success) {
+        loadMembersAndDivisions();
+        toast.success("Anggota tim berhasil dihapus.");
+      } else {
+        toast.error("Gagal menghapus anggota.");
       }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -186,20 +210,37 @@ export default function TeamCrud() {
       </div>
 
       {/* Editor Drawer Overlay */}
-      {isFormOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-end">
-          <div className="w-full max-w-xl bg-background border-l border-border h-full flex flex-col p-6 overflow-y-auto space-y-6">
+      <AnimatePresence>
+        {isFormOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-end">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsFormOpen(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer"
+            />
             
-            <div className="flex items-center justify-between border-b border-border pb-4">
-              <h3 className="text-lg font-bold text-foreground">
-                {editingMember ? "Edit Anggota Tim" : "Tambah Anggota Tim"}
-              </h3>
-              <button onClick={() => setIsFormOpen(false)} className="p-1 hover:bg-border rounded cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            {/* Animated drawer content container */}
+            <motion.div
+              initial={{ x: "100%", opacity: 0.9 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0.9 }}
+              transition={{ type: "spring", damping: 26, stiffness: 220 }}
+              className="relative w-full max-w-xl bg-background border-l border-border h-full flex flex-col p-6 overflow-y-auto space-y-6 z-10"
+            >
+              
+              <div className="flex items-center justify-between border-b border-border pb-4">
+                <h3 className="text-lg font-bold text-foreground">
+                  {editingMember ? "Edit Anggota Tim" : "Tambah Anggota Tim"}
+                </h3>
+                <button onClick={() => setIsFormOpen(false)} className="p-1 hover:bg-border rounded cursor-pointer">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5 text-xs md:text-sm">
+              <form onSubmit={handleSubmit} className="space-y-5 text-xs md:text-sm">
               {/* Name */}
               <div className="space-y-1.5">
                 <label className="font-bold text-foreground">Nama Lengkap *</label>
@@ -386,9 +427,10 @@ export default function TeamCrud() {
 
             </form>
 
-          </div>
+          </motion.div>
         </div>
       )}
+    </AnimatePresence>
 
       {/* Team members list table grid */}
       <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
@@ -475,6 +517,14 @@ export default function TeamCrud() {
           </div>
         )}
       </div>
+
+      <ConfirmDialog
+        isOpen={confirmDialog.isOpen}
+        title={confirmDialog.title}
+        message={confirmDialog.message}
+        onConfirm={confirmDialog.onConfirm}
+        onCancel={() => setConfirmDialog(prev => ({ ...prev, isOpen: false }))}
+      />
 
     </div>
   );

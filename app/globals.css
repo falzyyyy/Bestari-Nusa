@@ -14,12 +14,17 @@
   --color-glow: var(--glow);
   --color-surface: var(--surface);
 
+  --color-vintage-terracotta: #C87A53;
+  --color-vintage-sage: #8A9A86;
+  --color-vintage-beige: #E6DFD3;
+
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-glow: pulse-glow 3s infinite;
   --animate-marquee: marquee 30s linear infinite;
   --animate-fade-in-up: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
   --font-sans: var(--font-plus-jakarta-sans), system-ui, sans-serif;
+  --font-serif: var(--font-playfair-display), Georgia, serif;
 }
 
 :root {
@@ -175,4 +180,18 @@ html, body {
 .prose img {
   border-radius: 12px;
   margin: 1.5em 0;
+}
+
+/* Film Grain Noise Effect */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.022; /* Muted 2.2% opacity for subtle organic noise texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }

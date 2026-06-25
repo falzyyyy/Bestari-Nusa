@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { Plus, Edit2, Trash2, X, Check, Eye, HelpCircle } from "lucide-react";
 import { db } from "@/lib/supabase";
 import { Post, Category } from "@/lib/store";
+import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
+import ConfirmDialog from "@/components/admin/confirm-dialog";
 
 export default function NewsCrud() {
   const searchParams = useSearchParams();
@@ -16,6 +19,17 @@ export default function NewsCrud() {
   const [editingPost, setEditingPost] = useState<Partial<Post> | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+  }>({
+    isOpen: false,
+    title: "",
+    message: "",
+    onConfirm: () => {}
+  });
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -25,8 +39,9 @@ export default function NewsCrud() {
       const { uploadImage } = await import("@/lib/upload");
       const url = await uploadImage(file);
       setFormData(prev => ({ ...prev, cover_image: url }));
+      toast.success("Gambar sampul artikel berhasil diunggah!");
     } catch (err: any) {
-      alert(err.message || "Gagal mengunggah gambar");
+      toast.error(err.message || "Gagal mengunggah gambar");
     } finally {
       setUploading(false);
     }
@@ -123,7 +138,7 @@ export default function NewsCrud() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.title || !formData.slug || !formData.content) {
-      alert("Harap lengkapi semua kolom wajib.");
+      toast.warning("Harap lengkapi semua kolom wajib.");
       return;
     }
 
@@ -131,23 +146,32 @@ export default function NewsCrud() {
       await db.savePost(formData);
       setIsFormOpen(false);
       loadPostsAndCategories();
+      toast.success("Artikel berhasil disimpan!");
     } catch (err: any) {
-      alert(`Gagal menyimpan artikel: ${err.message || err}`);
+      toast.error(`Gagal menyimpan artikel: ${err.message || err}`);
     }
   };
 
-  const handleDelete = async (id: string) => {
-    if (confirm("Apakah Anda yakin ingin menghapus artikel ini?")) {
-      try {
-        const success = await db.deletePost(id);
-        if (success) {
-          loadPostsAndCategories();
-        } else {
-          alert("Gagal menghapus artikel.");
-        }
-      } catch (err) {
-        console.error(err);
+  const handleDelete = (id: string) => {
+    setConfirmDialog({
+      isOpen: true,
+      title: "Hapus Artikel",
+      message: "Apakah Anda yakin ingin menghapus artikel/kajian ini? Tindakan ini tidak dapat dibatalkan.",
+      onConfirm: () => handleDeleteConfirmed(id)
+    });
+  };
+
+  const handleDeleteConfirmed = async (id: string) => {
+    try {
+      const success = await db.deletePost(id);
+      if (success) {
+        loadPostsAndCategories();
+        toast.success("Artikel berhasil dihapus.");
+      } else {
+        toast.error("Gagal menghapus artikel.");
       }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -169,20 +193,37 @@ export default function NewsCrud() {
       </div>
 
       {/* Editor slide drawer overlay */}
-      {isFormOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-end">
-          <div className="w-full max-w-2xl bg-background border-l border-border h-full flex flex-col p-6 overflow-y-auto space-y-6">
+      <AnimatePresence>
+        {isFormOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-end">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsFormOpen(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm cursor-pointer"
+            />
             
-            <div className="flex items-center justify-between border-b border-border pb-4">
-              <h3 className="text-lg font-bold text-foreground">
-                {editingPost ? "Edit Artikel" : "Tulis Artikel Baru"}
-              </h3>
-              <button onClick={() => setIsFormOpen(false)} className="p-1 hover:bg-border rounded cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+            {/* Animated drawer content container */}
+            <motion.div
+              initial={{ x: "100%", opacity: 0.9 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0.9 }}
+              transition={{ type: "spring", damping: 26, stiffness: 220 }}
+              className="relative w-full max-w-2xl bg-background border-l border-border h-full flex flex-col p-6 overflow-y-auto space-y-6 z-10"
+            >
+              
+              <div className="flex items-center justify-between border-b border-border pb-4">
+                <h3 className="text-lg font-bold text-foreground">
+                  {editingPost ? "Edit Artikel" : "Tulis Artikel Baru"}
+                </h3>
+                <button onClick={() => setIsFormOpen(false)} className="p-1 hover:bg-border rounded cursor-pointer">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5 text-xs md:text-sm">
+              <form onSubmit={handleSubmit} className="space-y-5 text-xs md:text-sm">
               {/* Title */}
               <div className="space-y-1.5">
                 <label className="font-bold text-foreground">Judul Artikel *</label>
@@ -337,9 +378,10 @@ export default function NewsCrud() {
 
             </form>
 
-          </div>
+          </motion.div>
         </div>
       )}
+    </AnimatePresence>
 
       {/* Articles table grid */}
       <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
@@ -415,6 +457,14 @@ export default function NewsCrud() {
           </div>
         )}
       </div>
+
+      <ConfirmDialog
+        isOpen={confirmDialog.isOpen}
+        title={confirmDialog.title}
+        message={confirmDialog.message}
+        onConfirm={confirmDialog.onConfirm}
+        onCancel={() => setConfirmDialog(prev => ({ ...prev, isOpen: false }))}
+      />
 
     </div>
   );
