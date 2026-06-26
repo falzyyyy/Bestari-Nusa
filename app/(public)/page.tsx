@@ -185,7 +185,7 @@ export default async function HomePage() {
             </div>
             <Link
               href="/programs"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-border hover:bg-primary-soft/30 text-sm font-semibold transition-colors shrink-0"
+              className="w-fit inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-border hover:bg-primary-soft/30 text-sm font-semibold transition-colors shrink-0"
             >
               Semua Program <ArrowRight className="w-4 h-4" />
             </Link>
@@ -259,7 +259,7 @@ export default async function HomePage() {
             </div>
             <Link
               href="/news"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-border hover:bg-primary-soft/30 text-sm font-semibold transition-colors shrink-0"
+              className="w-fit inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-border hover:bg-primary-soft/30 text-sm font-semibold transition-colors shrink-0"
             >
               Lihat Semua Cerita <ArrowRight className="w-4 h-4" />
             </Link>

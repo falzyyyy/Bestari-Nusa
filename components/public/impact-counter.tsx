@@ -45,7 +45,7 @@ export default function ImpactCounter({
 
   // Map string icon names to Lucide elements
   const renderIcon = () => {
-    const classStyle = "w-7 h-7 text-primary mb-2.5";
+    const classStyle = "w-7 h-7 text-primary";
     switch (icon.toLowerCase()) {
       case "leaf":
         return <Leaf className={classStyle} />;
@@ -63,7 +63,7 @@ export default function ImpactCounter({
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center text-center p-6 rounded-2xl glass-card relative group hover:scale-[1.02] transition-transform duration-300"
+      className="flex flex-col items-center text-center p-4 sm:p-6 rounded-2xl glass-card relative group hover:scale-[1.02] transition-transform duration-300"
     >
       <div className="p-3 bg-primary-soft/50 rounded-full mb-3 text-primary group-hover:rotate-12 transition-transform duration-300">
         {renderIcon()}

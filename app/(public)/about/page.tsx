@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="w-full py-16 md:py-24 space-y-20">
+    <div className="w-full pt-32 pb-16 md:pt-40 md:pb-24 space-y-20">
       
       {/* 1. Page Header */}
       <section className="max-w-4xl mx-auto px-6 text-center space-y-6">

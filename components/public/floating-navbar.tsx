@@ -115,14 +115,14 @@ export default function FloatingNavbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-background/80 backdrop-blur-md flex flex-col justify-center px-6 md:hidden"
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-md overflow-y-auto px-6 py-28 flex flex-col items-center justify-start md:hidden"
           >
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 20, opacity: 0 }}
               transition={{ delay: 0.1 }}
-              className="w-full max-w-sm mx-auto space-y-8"
+              className="w-full max-w-sm mx-auto space-y-8 my-auto"
             >
               <div className="flex flex-col gap-4">
                 {NAV_ITEMS.map((item, idx) => {
