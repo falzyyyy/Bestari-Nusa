@@ -27,15 +27,15 @@ export default async function HomePage() {
     <div className="flex flex-col w-full overflow-hidden">
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden bg-gradient-to-b from-[#E6F4F5]/30 via-background to-background dark:from-[#112325]/15">
+      <section className="relative min-h-[75vh] lg:min-h-[80vh] flex items-center pt-28 pb-12 md:pt-36 md:pb-20 overflow-hidden bg-gradient-to-b from-[#E6F4F5]/30 via-background to-background dark:from-[#112325]/15">
         {/* Soft decorative background glows */}
         <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-primary/5 dark:bg-primary/2 rounded-full blur-3xl" />
         <div className="absolute bottom-1/5 right-1/10 w-96 h-96 bg-primary-soft/10 dark:bg-primary-soft/5 rounded-full blur-3xl" />
 
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-12 items-center w-full relative z-10">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center w-full relative z-10">
           
           {/* Left Text Column */}
-          <div className="md:col-span-7 flex flex-col space-y-8 text-left">
+          <div className="md:col-span-7 flex flex-col space-y-5 md:space-y-6 lg:space-y-8 text-left">
             
             {/* Small Trust Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-soft/80 dark:bg-primary-soft/10 text-primary-dark dark:text-primary border border-primary/20 w-fit">
@@ -91,8 +91,8 @@ export default async function HomePage() {
       </section>
 
       {/* 2. ABOUT PREVIEW SECTION */}
-      <section className="py-36 bg-background border-t border-border/10">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+      <section className="py-16 md:py-24 bg-background border-t border-border/10">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center">
           
           <div className="md:col-span-5 relative">
             <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden border border-border/60 shadow-sm grayscale hover:grayscale-0 transition-all duration-[800ms] ease-[0.16,1,0.3,1]">
@@ -129,8 +129,8 @@ export default async function HomePage() {
       </section>
 
       {/* 3. FOCUS AREAS */}
-      <section className="py-36 bg-primary-soft/10 dark:bg-primary-soft/5">
-        <div className="max-w-7xl mx-auto px-6 space-y-16">
+      <section className="py-16 md:py-24 bg-primary-soft/10 dark:bg-primary-soft/5">
+        <div className="max-w-7xl mx-auto px-6 space-y-10 md:space-y-16">
           
           {/* Header */}
           <div className="max-w-2xl space-y-4">
@@ -167,8 +167,8 @@ export default async function HomePage() {
       </section>
 
       {/* 4. FEATURED PROGRAMS */}
-      <section className="py-36 bg-background">
-        <div className="max-w-7xl mx-auto px-6 space-y-16">
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-6 space-y-10 md:space-y-16">
           
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -194,7 +194,7 @@ export default async function HomePage() {
           {/* Programs Grid */}
           {featuredPrograms.length === 0 ? (
             <div className="text-center py-12 border border-dashed border-border rounded-xl">
-              <p className="text-muted">Program belum tersedia. Silakan tambahkan program melalui Admin CMS.</p>
+              <p className="text-muted">Belum ada program aktif saat ini. Silakan hubungi kami untuk informasi kerja sama lebih lanjut.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -207,9 +207,9 @@ export default async function HomePage() {
       </section>
 
       {/* 5. IMPACT SNAPSHOT */}
-      <section className="py-36 bg-[#091213] dark:bg-[#050B0C] text-[#E7ECEC] border-t border-b border-border/15 relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-[#091213] dark:bg-[#050B0C] text-[#E7ECEC] border-t border-b border-border/15 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
-        <div className="max-w-7xl mx-auto px-6 space-y-16 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 space-y-10 md:space-y-16 relative z-10">
           
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto space-y-4">
@@ -241,8 +241,8 @@ export default async function HomePage() {
       </section>
 
       {/* 6. LATEST NEWS / STORIES */}
-      <section className="py-36 bg-background">
-        <div className="max-w-7xl mx-auto px-6 space-y-16">
+      <section className="py-16 md:py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-6 space-y-10 md:space-y-16">
           
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -298,9 +298,9 @@ export default async function HomePage() {
       </section>
 
       {/* 8. COLLABORATION CTA */}
-      <section className="py-36 bg-background relative overflow-hidden">
+      <section className="py-16 md:py-24 bg-background relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 relative z-10">
-          <div className="p-10 md:p-16 rounded-3xl border border-primary/20 bg-gradient-to-tr from-primary-soft/40 via-background to-background dark:from-primary-soft/5 dark:via-card dark:to-card text-center space-y-8 relative overflow-hidden shadow-sm">
+          <div className="p-8 md:p-16 rounded-3xl border border-primary/20 bg-gradient-to-tr from-primary-soft/40 via-background to-background dark:from-primary-soft/5 dark:via-card dark:to-card text-center space-y-6 md:space-y-8 relative overflow-hidden shadow-sm">
             
             {/* Background design elements */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl" />

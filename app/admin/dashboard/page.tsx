@@ -187,7 +187,7 @@ export default function AdminDashboard() {
         {/* Quick Shortcut Panel */}
         <div className="p-6 rounded-2xl border border-border bg-card shadow-sm space-y-4">
           <h3 className="text-sm md:text-base font-bold text-foreground">
-            Aksi Cepat CMS
+            Aksi Cepat
           </h3>
           <div className="flex flex-col gap-2.5">
             <Link

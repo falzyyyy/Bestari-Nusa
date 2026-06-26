@@ -135,7 +135,7 @@ export default function ContactPage() {
           <div className="p-6 rounded-2xl border border-primary/20 bg-primary-soft/10 dark:bg-primary-soft/5 flex gap-3.5">
             <Sparkles className="w-5 h-5 text-primary shrink-0" />
             <p className="text-xs text-muted leading-relaxed font-medium">
-              Dokumentasi data inquiry terkirim dapat Anda pantau secara langsung melalui menu pesan di panel Admin CMS.
+              Setiap pesan kolaborasi yang Anda kirimkan terenkripsi secara aman dan akan diproses langsung oleh perwakilan tim kami.
             </p>
           </div>
 

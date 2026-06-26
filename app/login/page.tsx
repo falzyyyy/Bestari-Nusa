@@ -101,7 +101,7 @@ export default function LoginPage() {
             <div className="w-12 h-12 rounded-full bg-primary-soft/10 text-primary flex items-center justify-center mx-auto border border-primary/20">
               <ShieldCheck className="w-6 h-6 animate-pulse" />
             </div>
-            <h1 className="text-2xl font-black text-white">Portal Admin CMS</h1>
+            <h1 className="text-2xl font-black text-white">Portal Admin</h1>
             <p className="text-xs text-muted">
               Masuk untuk mengelola postingan berita, program kerja, tim pengurus, dan pesan masuk.
             </p>
@@ -192,7 +192,7 @@ export default function LoginPage() {
 
       {/* Footer copyright */}
       <div className="text-center text-[10px] text-muted pb-4">
-        © {new Date().getFullYear()} Bestari Nusa. CMS Portal Dashboard.
+        © {new Date().getFullYear()} Bestari Nusa. Dashboard Admin.
       </div>
 
     </div>

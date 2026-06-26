@@ -161,7 +161,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </button>
           
           <div className="text-[10px] text-muted text-center pt-2">
-            Bestari Nusa CMS v1.0
+            Bestari Nusa Admin v1.0
           </div>
         </div>
 
