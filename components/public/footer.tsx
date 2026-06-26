@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Mail, MessageCircle, MapPin, Heart } from "lucide-react";
-import { Instagram } from "@/components/ui/icons";
+import { Instagram, Linkedin } from "@/components/ui/icons";
 
 export default function Footer() {
   return (
@@ -26,20 +26,29 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-3.5 pt-2">
             <a 
-              href="mailto:halo@bestarinusa.org" 
+              href="mailto:yayasanbestarinusa@gmail.com" 
               className="p-2.5 rounded-full bg-white/5 hover:bg-primary/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
               aria-label="Send Email"
             >
               <Mail className="w-4 h-4" />
             </a>
             <a 
-              href="https://instagram.com" 
+              href="https://instagram.com/bestarinusa.id" 
               target="_blank" 
               rel="noreferrer" 
               className="p-2.5 rounded-full bg-white/5 hover:bg-primary/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
               aria-label="Visit Instagram"
             >
               <Instagram className="w-4 h-4" />
+            </a>
+            <a 
+              href="https://linkedin.com/company/berdaya-lestari-nusantara-foundation" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="p-2.5 rounded-full bg-white/5 hover:bg-primary/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
+              aria-label="Visit LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
             </a>
             <a 
               href="https://wa.me/628123456789" 
@@ -93,11 +102,11 @@ export default function Footer() {
             Fokus Gerakan
           </h4>
           <ul className="space-y-2.5 text-sm text-[#8FA4A6]">
-            <li>Pengembangan Pemuda</li>
-            <li>Riset Aksi Partisipatif</li>
+            <li>Social Mapping</li>
+            <li>Stakeholder Engagement</li>
+            <li>Social Return on Investment</li>
             <li>Community Development</li>
-            <li>Keberlanjutan Ekologi</li>
-            <li>Kolaborasi CSR</li>
+            <li>Sustainability & Konservasi</li>
           </ul>
         </div>
 
@@ -113,7 +122,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2.5 text-[#8FA4A6]">
               <Mail className="w-4 h-4 text-[#00AFB4]" />
-              <span>info@bestarinusa.org</span>
+              <span>yayasanbestarinusa@gmail.com</span>
             </div>
           </div>
         </div>

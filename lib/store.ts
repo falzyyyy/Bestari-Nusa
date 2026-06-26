@@ -141,119 +141,429 @@ const DEFAULT_DIVISIONS: Division[] = [
 const DEFAULT_MEMBERS: TeamMember[] = [
   {
     id: 'team-1',
-    name: 'Naufal Bestari',
-    slug: 'naufal-bestari',
-    position: 'Executive Director',
+    name: 'Yui Zahana, S.Sos., M.Si',
+    slug: 'yui-zahana',
+    position: 'Direktur & Senior Researcher',
     division_id: 'div-1',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300&h=300',
-    bio: 'Fokus pada desain intervensi sosial dan pemberdayaan pemuda pasca-kampus.',
-    email: 'naufal@bestarinusa.org',
-    social_links: { linkedin: 'https://linkedin.com', instagram: 'https://instagram.com' },
+    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300&h=300',
+    bio: 'Keahlian: Social Mapping, SROI, Stakeholder Engagement. Pendidikan: S.Sos Sosiologi - Universitas Sriwijaya (2023) | M.Si Magister Sosiologi - Universitas Sriwijaya (2025).',
+    email: 'yui.zahana@bestarinusa.id',
+    social_links: { linkedin: 'https://linkedin.com/in/yuizahana' },
     order_index: 1,
     is_featured: true,
     is_active: true
   },
   {
-    id: 'team-2',
-    name: 'Laras Safira',
-    slug: 'laras-safira',
-    position: 'Head of Social Research',
+    id: 'team-3',
+    name: 'Dinar Try Akbar, S.Sos., M.Si',
+    slug: 'dinar-try-akbar',
+    position: 'Senior Researcher',
     division_id: 'div-2',
-    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=300&h=300',
-    bio: 'Lulusan Antropologi dengan keahlian pemetaan sosial (social mapping) dan FGD partisipatif.',
-    email: 'laras@bestarinusa.org',
+    photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=300&h=300',
+    bio: 'Keahlian: Social Mapping, Community Involvement and Development. Pendidikan: S.Sos Sosiologi - Universitas Sriwijaya (2023) | M.Si Magister Pengelolaan Lingkungan - Pascasarjana Unsri (2025) | Dr Ilmu Lingkungan - Pascasarjana Unsri (Present).',
+    email: 'dinar.try@bestarinusa.id',
     social_links: { linkedin: 'https://linkedin.com' },
     order_index: 2,
     is_featured: true,
     is_active: true
   },
   {
-    id: 'team-3',
-    name: 'Budi Santoso',
-    slug: 'budi-santoso',
-    position: 'Field Program Manager',
-    division_id: 'div-3',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300&h=300',
-    bio: 'Berpengalaman selama 5 tahun mendampingi masyarakat adat di bidang ekowisata.',
-    email: 'budi@bestarinusa.org',
-    social_links: { instagram: 'https://instagram.com' },
+    id: 'team-2',
+    name: 'Fadila Nur Amalia, S.H., M.I.Pol',
+    slug: 'fadila-nur-amalia',
+    position: 'Senior Researcher',
+    division_id: 'div-2',
+    photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300&h=300',
+    bio: 'Keahlian: Public Policy, Risk Management. Pendidikan: S.H Hukum - Universitas Sriwijaya (2017) | M.I.Pol FISIP - Universitas Padjadjaran (2024).',
+    email: 'fadila.nur@bestarinusa.id',
+    social_links: { linkedin: 'https://linkedin.com' },
     order_index: 3,
+    is_featured: true,
+    is_active: true
+  },
+  {
+    id: 'team-5',
+    name: 'Maharani, S.Sos',
+    slug: 'maharani',
+    position: 'Senior Researcher',
+    division_id: 'div-2',
+    photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300&h=300',
+    bio: 'Keahlian: Social Mapping, Social Return on Investment. Pendidikan: S.Sos Sosiologi - Universitas Sriwijaya (2025).',
+    email: 'maharani@bestarinusa.id',
+    social_links: { linkedin: 'https://linkedin.com' },
+    order_index: 4,
+    is_featured: false,
+    is_active: true
+  },
+  {
+    id: 'team-4',
+    name: 'Detia Zalyanti, S.Sos',
+    slug: 'detia-zalyanti',
+    position: 'Senior Researcher',
+    division_id: 'div-2',
+    photo: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=300&h=300',
+    bio: 'Keahlian: Indeks Kepuasan Masyarakat, Social Return on Investment. Pendidikan: S.Sos Sosiologi - Universitas Sriwijaya (2024) | M.Sc PSdK - Universitas Gadjah Mada (Present).',
+    email: 'detia.zalyanti@bestarinusa.id',
+    social_links: { linkedin: 'https://linkedin.com' },
+    order_index: 5,
+    is_featured: false,
+    is_active: true
+  },
+  {
+    id: 'team-6',
+    name: 'Wardah Habiba, S.Sos',
+    slug: 'wardah-habiba',
+    position: 'Assistant & Junior Researcher',
+    division_id: 'div-2',
+    photo: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300&h=300',
+    bio: 'Keahlian: Social Mapping, Stakeholder Engagement. Pendidikan: S.Sos Sosiologi - Universitas Sriwijaya (2026).',
+    email: 'wardah.habiba@bestarinusa.id',
+    social_links: { instagram: 'https://instagram.com' },
+    order_index: 6,
+    is_featured: false,
+    is_active: true
+  },
+  {
+    id: 'team-7',
+    name: 'M. Syaifuddin Aziz, S.Sos',
+    slug: 'm-syaifuddin-aziz',
+    position: 'Assistant & Junior Researcher',
+    division_id: 'div-2',
+    photo: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300&h=300',
+    bio: 'Keahlian: Social Mapping, SROI. Pendidikan: S.Sos Sosiologi - Universitas Sriwijaya (2026).',
+    email: 'syaifuddin.aziz@bestarinusa.id',
+    social_links: { linkedin: 'https://linkedin.com' },
+    order_index: 7,
+    is_featured: false,
+    is_active: true
+  },
+  {
+    id: 'team-8',
+    name: 'Salsabila Nanda F., S.Sos',
+    slug: 'salsabila-nanda-f',
+    position: 'Assistant & Junior Researcher',
+    division_id: 'div-2',
+    photo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=300&h=300',
+    bio: 'Keahlian: IKM, SROI. Pendidikan: S.Sos Sosiologi - Universitas Sriwijaya (2026).',
+    email: 'salsabila.nanda@bestarinusa.id',
+    social_links: { instagram: 'https://instagram.com' },
+    order_index: 8,
     is_featured: false,
     is_active: true
   }
 ];
 
 const DEFAULT_IMPACT: ImpactMetric[] = [
-  { id: 'imp-1', label: 'Program Terlaksana', value: 12, suffix: '+', description: 'Inisiatif sosial dan pengembangan komunitas', icon: 'leaf', order_index: 1, is_active: true },
-  { id: 'imp-2', label: 'Pemuda Terlibat', value: 320, suffix: '+', description: 'Generasi muda dalam pelatihan dan aksi sosial', icon: 'users', order_index: 2, is_active: true },
-  { id: 'imp-3', label: 'Mitra Kolaborasi', value: 18, suffix: '+', description: 'Institusi, komunitas, dan partner program', icon: 'handshake', order_index: 3, is_active: true },
-  { id: 'imp-4', label: 'Wilayah Dampingan', value: 6, suffix: '+', description: 'Area komunitas dampingan aktif', icon: 'map', order_index: 4, is_active: true }
+  { id: 'imp-1', label: 'Program Terlaksana', value: 10, suffix: '+', description: 'Inisiatif sosial, riset, dan pengembangan komunitas', icon: 'leaf', order_index: 1, is_active: true },
+  { id: 'imp-2', label: 'Relawan Terlibat', value: 500, suffix: '+', description: 'Pemuda, dosen, dan relawan korporasi', icon: 'users', order_index: 2, is_active: true },
+  { id: 'imp-3', label: 'Mitra Kerja Sama', value: 10, suffix: '+', description: 'Korporasi, BUMN, dan institusi akademik', icon: 'handshake', order_index: 3, is_active: true },
+  { id: 'imp-4', label: 'Sampah Terkelola', value: 5254, suffix: '+ Kg', description: 'Reduksi sampah lingkungan dari aksi Employee Green Involvement', icon: 'trash-2', order_index: 4, is_active: true },
+  { id: 'imp-5', label: 'Pohon Ditanam', value: 3500, suffix: '+', description: 'Bibit mangrove dan pohon pelindung di berbagai lokasi', icon: 'trees', order_index: 5, is_active: true }
 ];
 
 const DEFAULT_PROGRAMS: Program[] = [
   {
     id: 'prog-1',
-    title: 'Akademi Pemuda Bestari',
-    slug: 'akademi-pemuda-bestari',
-    summary: 'Program inkubator kepemimpinan sosial bagi lulusan baru untuk merancang solusi dampak berkelanjutan.',
-    description: 'Akademi Pemuda Bestari merupakan program bootcamp intensif selama 3 bulan yang melatih generasi muda pasca-kampus dalam keterampilan pemecahan masalah sosial, metodologi riset lapangan, desain berpikir (design thinking), serta manajemen projek. Selama program, peserta didorong untuk memetakan tantangan nyata di wilayah urban maupun rural dan menciptakan projek sosial yang terukur.',
-    category_id: 'cat-prog-1',
-    status: 'upcoming',
-    location: 'Palembang & Digital',
-    start_date: '2026-08-01',
-    end_date: '2026-11-01',
-    cover_image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800&h=500',
+    title: 'Energy Youth Movement: Mangrove Conservation',
+    slug: 'energy-youth-movement-mangrove',
+    summary: 'Mangrove Conservation For A Sustainability Environment - Hari Lingkungan Hidup Sedunia.',
+    description: 'Program ini fokus pada pelestarian ekosistem pesisir melalui pembuatan Pojok Literasi Mangrove untuk sarana edukasi anak-anak, penanaman serentak 2.000 bibit mangrove bersama 150 relawan dari mahasiswa, dosen, dan staf PLN, serta inovasi hilirisasi berupa pembuatan sabun alami dari ekstrak buah mangrove pedada (Sonneratia Caseolaris).',
+    category_id: 'cat-prog-3',
+    status: 'completed',
+    location: 'Pesisir Sumatera Selatan',
+    start_date: '2023-06-05',
+    end_date: '2023-06-08',
+    cover_image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800&h=500',
     gallery: [
-      'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800&h=500',
-      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800&h=500'
+      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800&h=500'
     ],
     objectives: [
-      'Membangun kapasitas leadership sosial pemuda.',
-      'Melatih keterampilan riset data sosial secara partisipatif.',
-      'Mendesain inkubasi program yang sustain secara finansial.'
+      'Sarana edukasi & literasi ekosistem pesisir',
+      'Penanaman 2.000 bibit mangrove',
+      'Produksi sabun alami buah pedada'
     ],
-    target_beneficiaries: 'Pemuda usia 20-25 tahun pasca-kelulusan.',
-    approach: 'Pelatihan kelas terstruktur, bimbingan mentor berpengalaman, dan penugasan lapangan (action learning).',
-    impact_summary: 'Mempersiapkan agen perubahan masa depan dengan kompetensi berbasis riset nyata.',
+    target_beneficiaries: 'Masyarakat pesisir dan pengunjung edukasi',
+    approach: 'Community collaboration, eco-education, green volunteering',
+    impact_summary: 'Mendukung capaian Tujuan Pembangunan Berkelanjutan (SDGs) pilar lingkungan.',
     impact_metrics: [
-      { label: 'Kuota Peserta', value: '40 Orang' },
-      { label: 'Mentor Expert', value: '8 Mentor' }
+      { label: 'Bibit Pohon', value: '2.000' },
+      { label: 'Relawan Terlibat', value: '150' }
     ],
-    registration_url: 'https://google.com',
-    collaboration_cta: 'Daftar Akademi',
+    registration_url: '',
+    collaboration_cta: 'Lihat Dokumentasi',
     is_featured: true,
     order_index: 1
   },
   {
     id: 'prog-2',
-    title: 'Laboratorium Social Mapping',
-    slug: 'laboratorium-social-mapping',
-    summary: 'Pemetaan potensi dan pemecahan masalah komunitas lokal berbasis data antropologis yang mendalam.',
-    description: 'Kami percaya bahwa program pemberdayaan yang baik didasari oleh pemahaman data yang kokoh. Laboratorium Social Mapping bertugas memetakan aktor penting, konflik sosial, kerentanan ekologis, serta potensi ekonomi lokal di wilayah sasaran sebelum intervensi program dimulai.',
+    title: 'Konservasi Mangrove Berbasis Masyarakat',
+    slug: 'konservasi-mangrove-sungsang',
+    summary: 'Pengelolaan Konservasi Mangrove Berbasis Masyarakat di Desa Sungsang IV, Banyuasin.',
+    description: 'Program penguatan kapasitas kelompok lokal dalam pembibitan mangrove (nursery ground) serta penyusunan modul belajar ekosistem mangrove khusus anak-anak tingkat SD dan SMP di Desa Sungsang IV.',
     category_id: 'cat-prog-2',
-    status: 'ongoing',
-    location: 'Sumatera Selatan',
-    start_date: '2026-03-01',
-    end_date: '2026-07-30',
-    cover_image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800&h=500',
-    gallery: [
-      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800&h=500'
-    ],
+    status: 'completed',
+    location: 'Desa Sungsang IV, Banyuasin',
+    start_date: '2024-04-10',
+    end_date: '2024-10-15',
+    cover_image: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
     objectives: [
-      'Menghasilkan social mapping report untuk mitra CSR.',
-      'Melatih warga lokal dalam mendokumentasikan aset desa.'
+      'Penguatan kapasitas kelompok tani hutan',
+      'Pembuatan nursery ground',
+      'Modul belajar sekolah dasar & menengah'
     ],
-    target_beneficiaries: 'Pemerintah desa, masyarakat adat, dan pengembang program.',
-    approach: 'PRA (Participatory Rural Appraisal), survei rumah tangga, GIS Mapping.',
-    impact_summary: 'Menghindari kegagalan program CSR akibat salah mengidentifikasi kebutuhan warga.',
+    target_beneficiaries: 'Kelompok pembibit lokal dan siswa sekolah dasar/menengah',
+    approach: 'Capacity building, participatory training, module formulation',
+    impact_summary: 'Membangun kemandirian ekologis dan kesadaran lingkungan anak usia sekolah.',
     impact_metrics: [
-      { label: 'Desa Dipetakan', value: '5 Wilayah' },
-      { label: 'Data Responden', value: '450 Rumah Tangga' }
+      { label: 'Modul Sekolah', value: '2 Tingkat' },
+      { label: 'Nursery Ground', value: '1 Unit' }
     ],
     registration_url: '',
-    collaboration_cta: 'Ajukan Pemetaan',
+    collaboration_cta: 'Hubungi Kemitraan',
     is_featured: true,
     order_index: 2
+  },
+  {
+    id: 'prog-eko',
+    title: 'Ekoeduwisata Mangrove Terpadu',
+    slug: 'ekoeduwisata-mangrove-terpadu',
+    summary: 'Kawasan ekowisata terpadu berbasis sosial, ekologi, dan ekonomi di Desa Sungsang IV.',
+    description: 'Program pengembangan kawasan mangrove Desa Sungsang IV sebagai ruang edukasi, konservasi, dan potensi ekonomi masyarakat. Melibatkan pembangunan Pojok Literasi Mangrove Sungsang IV dan edukasi keanekaragaman hayati (satwa dan tumbuhan). Mendukung SDGs Quality Education, Decent Work & Economic Growth, dan Climate Action.',
+    category_id: 'cat-prog-3',
+    status: 'completed',
+    location: 'Desa Sungsang IV, Banyuasin',
+    start_date: '2024-05-01',
+    end_date: '2024-11-30',
+    cover_image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
+    objectives: [
+      'Ekoeduwisata dengan pendekatan sosial, ekologi, dan ekonomi',
+      'Pojok Literasi Mangrove Sungsang IV',
+      'Edukasi flora & fauna ekosistem pesisir'
+    ],
+    target_beneficiaries: 'Masyarakat Desa Sungsang IV dan anak-anak sekolah',
+    approach: 'Community eco-education, biodiversity awareness',
+    impact_summary: 'Menyediakan sarana edukasi tentang keanekaragaman hayati untuk literasi pesisir.',
+    impact_metrics: [
+      { label: 'Pojok Literasi', value: '1 Unit' },
+      { label: 'SDGs Didukung', value: '3 Pilar' }
+    ],
+    registration_url: '',
+    collaboration_cta: 'Detail Program',
+    is_featured: false,
+    order_index: 3
+  },
+  {
+    id: 'prog-3',
+    title: 'Employee Green Involvement',
+    slug: 'employee-green-involvement',
+    summary: 'Aksi lingkungan pengumpulan sampah didukung penuh oleh PT PLN UIP Sumbagsel.',
+    description: 'Program aksi bersih lingkungan terpadu yang melibatkan 152 relawan pegawai PLN, Dinas Lingkungan Hidup Palembang, komunitas Bank Sampah, serta dosen dan mahasiswa FISIP Unsri. Aksi ini berhasil mengumpulkan dan mengolah 5.254 kg sampah menjadi barang kerajinan bernilai guna.',
+    category_id: 'cat-prog-4',
+    status: 'completed',
+    location: 'Ekowisata Mangrove Palembang',
+    start_date: '2024-07-20',
+    end_date: '2024-07-22',
+    cover_image: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
+    objectives: [
+      'Aksi pembersihan ekowisata terpadu',
+      'Penyaluran sampah ke Bank Sampah',
+      'Kolaborasi pentahelix'
+    ],
+    target_beneficiaries: 'Ekowisata lokal dan komunitas bank sampah',
+    approach: 'Employee volunteering, circular economy processing',
+    impact_summary: 'Pengurangan sampah plastik di ekosistem pesisir kota.',
+    impact_metrics: [
+      { label: 'Sampah Terkumpul', value: '5.254 Kg' },
+      { label: 'Relawan Pegawai', value: '152' },
+      { label: 'Pihak Terlibat', value: '4 Instansi' }
+    ],
+    registration_url: '',
+    collaboration_cta: 'Lihat Laporan',
+    is_featured: true,
+    order_index: 4
+  },
+  {
+    id: 'prog-4',
+    title: 'Energizing Green Space',
+    slug: 'energizing-green-space',
+    summary: 'Penanaman 1.000 pohon di lahan bekas pembuangan sampah TPA Kramasan.',
+    description: 'Rehabilitasi lahan non-produktif bekas pembuangan sampah TPA Kramasan Palembang dengan menanam 1.000 bibit pohon keras. Program ini dilakukan dalam rangka Hari Menanam Pohon Indonesia bersama 150 relawan dari DLH, PLN, dosen dan mahasiswa.',
+    category_id: 'cat-prog-3',
+    status: 'completed',
+    location: 'TPA Kramasan, Palembang',
+    start_date: '2024-11-28',
+    end_date: '2024-11-30',
+    cover_image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
+    objectives: [
+      'Rehabilitasi lahan bekas TPA',
+      'Penanaman 1.000 pohon pelindung',
+      'Kampanye hijau bersama mahasiswa'
+    ],
+    target_beneficiaries: 'Masyarakat sekitar Kramasan',
+    approach: 'Land rehabilitation, collaborative planting',
+    impact_summary: 'Pencegahan pencemaran tanah dan peningkatan luasan ruang terbuka hijau.',
+    impact_metrics: [
+      { label: 'Pohon Ditanam', value: '1.000' },
+      { label: 'Volunteer', value: '150' }
+    ],
+    registration_url: '',
+    collaboration_cta: 'Dukung Aksi',
+    is_featured: false,
+    order_index: 5
+  },
+  {
+    id: 'prog-5',
+    title: 'Kampung Hijau Desa Segayam',
+    slug: 'kampung-hijau-segayam',
+    summary: 'Penanaman 500 pohon kebun durian dan pengolahan sampah organik budidaya maggot.',
+    description: 'Program revitalisasi pertanian hortikultura melalui penanaman 500 bibit durian unggul dikombinasikan dengan edukasi pengolahan sampah rumah tangga berbasis budidaya maggot untuk pakan alternatif.',
+    category_id: 'cat-prog-2',
+    status: 'completed',
+    location: 'Desa Segayam, Muara Enim',
+    start_date: '2024-05-15',
+    end_date: '2024-09-20',
+    cover_image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
+    objectives: [
+      'Hortikultura kebun durian',
+      'Pengelolaan sampah organik warga',
+      'Pembangunan kandang maggot'
+    ],
+    target_beneficiaries: 'Petani dan warga Desa Segayam',
+    approach: 'Circular village concept, community empowerment',
+    impact_summary: 'Diversifikasi penghasilan pertanian dan reduksi sampah organik.',
+    impact_metrics: [
+      { label: 'Bibit Durian', value: '500 Pohon' },
+      { label: 'Budidaya Maggot', value: '1 Unit' }
+    ],
+    registration_url: '',
+    collaboration_cta: 'Detail Program',
+    is_featured: false,
+    order_index: 6
+  },
+  {
+    id: 'prog-6',
+    title: 'Zero Waste Warriors',
+    slug: 'zero-waste-warriors',
+    summary: 'Penempatan drop box sampah botol plastik terintegrasi Bank Sampah.',
+    description: 'Inovasi sirkular berupa pengadaan dan penempatan 10 drop box botol plastik pintar di taman dan ruang publik Kota Palembang. Aksi ini didukung edukasi bahaya sampah plastik dan clean up massal bersama 200 relawan.',
+    category_id: 'cat-prog-3',
+    status: 'completed',
+    location: 'Taman Publik Palembang',
+    start_date: '2025-06-05',
+    end_date: '2025-06-10',
+    cover_image: 'https://images.unsplash.com/photo-1605600611280-146e68892f6b?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
+    objectives: [
+      'Penempatan 10 unit drop box',
+      'Kampanye edukasi bahaya plastik',
+      'Clean up massal ruang publik'
+    ],
+    target_beneficiaries: 'Warga Kota Palembang',
+    approach: 'Public space recycling infrastructure, social volunteering',
+    impact_summary: 'Membantu pengumpulan botol plastik sekali pakai langsung dari sumbernya.',
+    impact_metrics: [
+      { label: 'Drop Box', value: '10 Unit' },
+      { label: 'Partisipan', value: '200 Orang' }
+    ],
+    registration_url: '',
+    collaboration_cta: 'Hubungi Kami',
+    is_featured: true,
+    order_index: 7
+  },
+  {
+    id: 'prog-7',
+    title: 'Ketahanan Pangan & UMKM Air Sempiang',
+    slug: 'ketahanan-pangan-air-sempiang',
+    summary: 'Pemberdayaan UMK Putri Landbouw Desa Air Sempiang, Bengkulu.',
+    description: 'Program pendampingan berkelanjutan untuk 30 perempuan dalam kelompok UMK Putri Landbouw di Bengkulu untuk mengolah hasil pertanian lokal bernilai tambah dengan prinsip ekonomi sirkuler. Didampingi oleh tim ahli dari FISIP Unsri.',
+    category_id: 'cat-prog-2',
+    status: 'completed',
+    location: 'Desa Air Sempiang, Bengkulu',
+    start_date: '2025-03-01',
+    end_date: '2025-10-31',
+    cover_image: 'https://images.unsplash.com/photo-1595275313395-5d9c669fb718?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
+    objectives: [
+      'Pembinaan 30 perempuan pelaku usaha',
+      'Hilirisasi hasil pertanian lokal',
+      'Pelatihan sirkuler & pemasaran'
+    ],
+    target_beneficiaries: 'Kelompok UMK Putri Landbouw',
+    approach: 'Women economic empowerment, circular food economy',
+    impact_summary: 'Meningkatkan ketahanan pangan dan perekonomian mikro keluarga.',
+    impact_metrics: [
+      { label: 'Perempuan Dibina', value: '30 Orang' },
+      { label: 'Produk Baru', value: '3 Varian' }
+    ],
+    registration_url: '',
+    collaboration_cta: 'Detail Program',
+    is_featured: true,
+    order_index: 8
+  },
+  {
+    id: 'prog-8',
+    title: 'Menjaga Air untuk Bumi yang Tangguh',
+    slug: 'menjaga-air-sungai-pedado',
+    summary: 'Program Adaptasi Perubahan Iklim bermitra PT PLN UIP Sumbagsel di Kampung Sungai Pedado, Palembang.',
+    description: 'Program adaptasi perubahan iklim bermitra PT PLN Persero UIP Sumbagsel di Kampung Sungai Pedado, Kelurahan Keramasan, Kecamatan Kertapati, Kota Palembang. Masyarakat Sungai Pedado telah puluhan tahun hidup tanpa akses air bersih yang layak dan bergantung langsung pada air sungai untuk mandi, mencuci, dan memasak. Setelah survei lokasi ditemukan lahan wakaf dengan bangunan hampir tidak layak pakai, akses jalan rusak parah, dan lokasi kerap tergenang saat air Sungai Musi pasang. Melalui mufakat warga, lokasi dibangun kembali menjadi MCK umum, pusat kontrol distribusi air bersih, taman bunga, dan lahan TOGA. Pembangunan mencakup instalasi pipanisasi air bersih, pembuatan 2 titik sumur bor sedalam 30-40 meter, pemasangan 3 unit penerangan lampu jalan, perbaikan akses jalan, serta pembangunan taman bunga dan lahan Tanaman Obat Keluarga.',
+    category_id: 'cat-prog-2',
+    status: 'completed',
+    location: 'Kampung Sungai Pedado, Kel. Keramasan, Kec. Kertapati, Palembang',
+    start_date: '2025-07-01',
+    end_date: '2025-11-30',
+    cover_image: 'https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
+    objectives: [
+      'Pembangunan MCK umum & pusat kontrol distribusi air bersih',
+      'Pembuatan 2 sumur bor sedalam 30-40 meter',
+      'Instalasi 3 titik penerangan lampu jalan',
+      'Pembuatan taman bunga & lahan TOGA'
+    ],
+    target_beneficiaries: 'Masyarakat Kampung Sungai Pedado',
+    approach: 'Infrastructure rehabilitation, clean water piping, ecological garden',
+    impact_summary: 'Menyediakan akses sanitasi dan air bersih pertama yang layak bagi puluhan keluarga yang sebelumnya bergantung langsung pada air Sungai Musi.',
+    impact_metrics: [
+      { label: 'Sumur Bor', value: '2 Titik' },
+      { label: 'Penerangan Jalan', value: '3 Titik' },
+      { label: 'Lahan TOGA', value: '1 Unit' },
+      { label: 'MCK Umum', value: '1 Unit' }
+    ],
+    registration_url: '',
+    collaboration_cta: 'Hubungi Kami',
+    is_featured: true,
+    order_index: 9
+  },
+  {
+    id: 'prog-9',
+    title: 'Pendampingan Pengembangan Nanas Kelekar',
+    slug: 'pendampingan-nanas-kelekar',
+    summary: 'Program pendampingan masyarakat dan komoditas lokal binaan PT Bukit Asam.',
+    description: 'Program kemitraan dan binaan PT Bukit Asam yang berfokus pada pendampingan masyarakat, pengembangan komoditas lokal (Nanas Kelekar), dan penguatan potensi ekonomi berbasis produk daerah. Detail program lebih lanjut belum dicantumkan pada slide resmi.',
+    category_id: 'cat-prog-4',
+    status: 'ongoing',
+    location: 'Data belum tersedia di brief',
+    start_date: '2026-01-01',
+    end_date: '2026-12-31',
+    cover_image: 'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&q=80&w=800&h=500',
+    gallery: [],
+    objectives: [
+      'Pendampingan masyarakat',
+      'Pengembangan komoditas lokal (Nanas Kelekar)',
+      'Penguatan potensi ekonomi berbasis produk daerah'
+    ],
+    target_beneficiaries: 'Data belum tersedia di brief',
+    approach: 'Data belum tersedia di brief',
+    impact_summary: 'Data belum tersedia di brief',
+    impact_metrics: [],
+    registration_url: '',
+    collaboration_cta: 'Hubungi Kami',
+    is_featured: false,
+    order_index: 10
   }
 ];
 
@@ -279,7 +589,7 @@ Dengan riset sosial, pemuda diajak untuk tinggal bersama warga, mendengarkan kel
     `,
     cover_image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800&h=500',
     category_id: 'cat-news-3',
-    author_id: 'team-2',
+    author_id: 'team-1',
     status: 'published',
     is_featured: true,
     published_at: '2026-06-10T08:00:00Z',
@@ -313,9 +623,16 @@ Bestari Nusa bersama mitra CSR meresmikan program aksi bersama di Desa Muara Bar
 ];
 
 const DEFAULT_PARTNERS: Partner[] = [
-  { id: 'part-1', name: 'Pertamina Hulu', slug: 'pertamina-hulu', logo: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://pertamina.com', partnership_type: 'CSR', year: 2025, is_featured: true, order_index: 1, is_active: true },
-  { id: 'part-2', name: 'Yayasan Kehati', slug: 'yayasan-kehati', logo: 'https://images.unsplash.com/photo-1618005198143-e528346d9a59?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://kehati.or.id', partnership_type: 'NGO', year: 2026, is_featured: true, order_index: 2, is_active: true },
-  { id: 'part-3', name: 'Universitas Sriwijaya', slug: 'unsri', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://unsri.ac.id', partnership_type: 'Academic', year: 2025, is_featured: true, order_index: 3, is_active: true }
+  { id: 'part-1', name: 'PT PLN UIP Sumbagsel', slug: 'pln-uip-sumbagsel', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://pln.co.id', partnership_type: 'CSR', year: 2024, is_featured: true, order_index: 1, is_active: true },
+  { id: 'part-2', name: 'PT Bukit Asam', slug: 'bukit-asam', logo: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://ptba.co.id', partnership_type: 'CSR', year: 2026, is_featured: true, order_index: 2, is_active: true },
+  { id: 'part-3', name: 'PT Pusri Palembang', slug: 'pusri-palembang', logo: 'https://images.unsplash.com/photo-1618005198143-e528346d9a59?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://pusri.co.id', partnership_type: 'CSR', year: 2023, is_featured: true, order_index: 3, is_active: true },
+  { id: 'part-4', name: 'PT Pertamina EP', slug: 'pertamina-ep', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://pertamina.com', partnership_type: 'CSR', year: 2022, is_featured: true, order_index: 4, is_active: true },
+  { id: 'part-5', name: 'PT Medco E&P Indonesia', slug: 'medco-ep-indonesia', logo: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://medcoenergi.com', partnership_type: 'CSR', year: 2025, is_featured: true, order_index: 5, is_active: true },
+  { id: 'part-6', name: 'Universitas Sriwijaya (FISIP)', slug: 'unsri', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://unsri.ac.id', partnership_type: 'Academic', year: 2023, is_featured: true, order_index: 6, is_active: true },
+  { id: 'part-7', name: 'PT Pertamina Geothermal Energy', slug: 'pertamina-geothermal', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://pge.pertamina.com', partnership_type: 'CSR', year: 2024, is_featured: true, order_index: 7, is_active: true },
+  { id: 'part-8', name: 'PT Supreme Energy', slug: 'supreme-energy', logo: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://supreme-energy.com', partnership_type: 'CSR', year: 2025, is_featured: true, order_index: 8, is_active: true },
+  { id: 'part-9', name: 'PT Oki Pulp & Paper Mills', slug: 'oki-pulp-paper', logo: 'https://images.unsplash.com/photo-1618005198143-e528346d9a59?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://www.aprilasia.com', partnership_type: 'CSR', year: 2023, is_featured: false, order_index: 9, is_active: true },
+  { id: 'part-10', name: 'PT PLN Nusantara Power', slug: 'pln-nusantara-power', logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&q=80&w=150&h=80', website_url: 'https://pln.co.id', partnership_type: 'CSR', year: 2025, is_featured: false, order_index: 10, is_active: true }
 ];
 
 const DEFAULT_INQUIRIES: Inquiry[] = [

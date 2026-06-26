@@ -105,8 +105,7 @@ export default function ContactPage() {
                 <Mail className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <h5 className="font-bold text-foreground">Hubungi Email</h5>
-                  <p className="text-muted text-xs mt-0.5">info@bestarinusa.org</p>
-                  <p className="text-muted text-xs">halo@bestarinusa.org</p>
+                  <p className="text-muted text-xs mt-0.5">yayasanbestarinusa@gmail.com</p>
                 </div>
               </div>
 
@@ -114,7 +113,7 @@ export default function ContactPage() {
                 <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <h5 className="font-bold text-foreground">Layanan WhatsApp</h5>
-                  <p className="text-muted text-xs mt-0.5">+62 812-3456-789</p>
+                  <p className="text-muted text-xs mt-0.5">+62 821-xxxx-xxxx</p>
                 </div>
               </div>
             </div>

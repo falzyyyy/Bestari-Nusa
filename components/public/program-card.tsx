@@ -91,7 +91,7 @@ export default function ProgramCard({ program }: ProgramCardProps) {
 
           {/* Action Footnote */}
           <div className="pt-4 border-t border-border/25 flex items-center justify-between text-xs font-semibold text-primary group-hover:text-primary-dark transition-colors duration-500">
-            <span>Lihat Pratinjau Program</span>
+            <span>Detail Program</span>
             <span className="w-6 h-6 rounded-full bg-primary-soft/50 group-hover:bg-primary group-hover:text-[#091213] flex items-center justify-center transition-all duration-[600ms] ease-[0.16,1,0.3,1]">
               →
             </span>

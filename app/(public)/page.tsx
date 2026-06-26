@@ -41,7 +41,7 @@ export default async function HomePage() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-soft/80 dark:bg-primary-soft/10 text-primary-dark dark:text-primary border border-primary/20 w-fit">
               <Sparkles className="w-4 h-4 text-primary animate-pulse" />
               <span className="text-[10px] font-bold uppercase tracking-widest">
-                Berdaya Lestari Nusantara
+                Think and Action for Social Research, Community Development and Sustainability
               </span>
             </div>
 
@@ -52,7 +52,7 @@ export default async function HomePage() {
             </h1>
 
             <p className="text-sm md:text-base text-muted max-w-xl leading-loose font-sans">
-              Bestari Nusa adalah ruang kolaborasi pengembangan SDM muda yang berfokus pada riset sosial, pemberdayaan masyarakat, advokasi sosial, dan keberlanjutan untuk menciptakan peluang berdampak bagi Nusantara.
+              Bestari Nusa Foundation menghubungkan riset sosial, pengembangan masyarakat, dan keberlanjutan lingkungan untuk mewujudkan masyarakat berdaya serta lingkungan lestari bagi Nusantara.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -114,7 +114,7 @@ export default async function HomePage() {
               Menghubungkan <span className="italic font-normal">Gagasan</span> dan Aksi Lapangan
             </h2>
             <p className="text-sm md:text-base text-muted leading-loose font-sans">
-              Bestari Nusa (Berdaya Lestari Nusantara) hadir sebagai ruang bertumbuh bagi pemuda pasca-kampus. Kami percaya aksi sosial yang hebat tidak hanya bersumber dari niat baik, melainkan dari data pemetaan masalah (evidence-based) yang jernih dan dirancang secara partisipatif bersama warga lokal agar memiliki keberlanjutan yang panjang.
+              Bestari Nusa Foundation (Berdaya Lestari Nusantara) adalah lembaga sosial, riset, dan edukasi yang berfokus pada pelibatan dan pengembangan masyarakat serta pelestarian lingkungan melalui program pendidikan, penguatan ekonomi, pengembangan kapasitas, serta kegiatan berkelanjutan — dengan semangat mewujudkan masyarakat berdaya dan lingkungan lestari bagi Nusantara.
             </p>
             <div className="pt-2">
               <Link
@@ -148,18 +148,18 @@ export default async function HomePage() {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <FocusAreaCard
-              title="Pengembangan Pemuda & Advokasi Sosial"
-              description="Membekali pemuda dengan kepemimpinan, kepedulian sosial, serta keterampilan advokasi isu-isu kemanusiaan."
-              iconName="youth"
-            />
-            <FocusAreaCard
-              title="Riset & Aksi Masyarakat"
-              description="Mengumpulkan data riil desa lewat social mapping untuk merancang program pemberdayaan ekonomi sosial lokal."
+              title="Social Research"
+              description="Melakukan riset sosial partisipatif, social mapping, stakeholder engagement, dan SROI untuk merancang program berbasis data yang tepat sasaran."
               iconName="research"
             />
             <FocusAreaCard
-              title="Keberlanjutan Lingkungan & Sosial"
-              description="Menanamkan kebiasaan pelestarian alam dan lingkungan bersamaan dengan peningkatan kemakmuran komunitas lokal."
+              title="Community Development"
+              description="Mengembangkan kapasitas masyarakat melalui pemberdayaan ekonomi lokal, penguatan keterampilan, pendampingan UMKM, dan program pendidikan berkelanjutan."
+              iconName="youth"
+            />
+            <FocusAreaCard
+              title="Sustainability"
+              description="Melestarikan lingkungan hidup melalui konservasi mangrove, pengelolaan sampah, penghijauan lahan, serta adaptasi perubahan iklim bersama masyarakat lokal."
               iconName="sustainability"
             />
           </div>
@@ -225,7 +225,7 @@ export default async function HomePage() {
           </div>
 
           {/* Counters Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-8 justify-center">
             {impactMetrics.map((metric) => (
               <ImpactCounter
                 key={metric.id}

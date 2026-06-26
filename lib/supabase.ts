@@ -50,7 +50,7 @@ export const db = {
       if (error) console.error("Error fetching team members:", error);
       return data || [];
     } else {
-      const members = MockDb.getTeamMembers().filter(m => m.is_active);
+      const members = MockDb.getTeamMembers().filter(m => m.is_active).sort((a, b) => a.order_index - b.order_index);
       return featuredOnly ? members.filter(m => m.is_featured) : members;
     }
   },
@@ -60,7 +60,7 @@ export const db = {
       const { data, error } = await supabase.from("team_members").select("*").order("order_index", { ascending: true });
       return data || [];
     } else {
-      return MockDb.getTeamMembers();
+      return MockDb.getTeamMembers().sort((a, b) => a.order_index - b.order_index);
     }
   },
 
@@ -172,7 +172,7 @@ export const db = {
       const { data, error } = await supabase.from("programs").select("*").order("order_index", { ascending: true });
       return data || [];
     } else {
-      return MockDb.getPrograms();
+      return MockDb.getPrograms().sort((a, b) => a.order_index - b.order_index);
     }
   },
 
