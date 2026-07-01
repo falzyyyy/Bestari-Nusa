@@ -1,0 +1,653 @@
+--- Page 1 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+CLIENT BRIEF 
+Website Company Profile & Content Portal 
+Bestari Nusa Foundation 
+Berdaya Lestari Nusantara Foundation 
+Dokumen ini telah diisi dan disesuaikan berdasarkan Profile Bestari Nusa Foundation 2026 serta struktur folder website 
+Next.js yang disiapkan. 
+Informasi Dokumen Keterangan 
+Status dokumen Draft terisi berdasarkan Profile Bestari Nusa Foundation 2026. 
+Bagian yang tidak tercantum di PDF diberi catatan "Perlu konfirmasi 
+klien". 
+Disiapkan untuk Bestari Nusa Foundation / Berdaya Lestari Nusantara Foundation 
+Jenis proyek Website company profile, content portal, halaman program, 
+berita/publikasi, tim, partner, dan kontak kolaborasi. 
+Tanggal pengisian Perlu konfirmasi 
+PIC klien Perlu konfirmasi 
+PIC developer Perlu konfirmasi 
+Catatan penggunaan: isi dokumen ini disusun sebagai bahan konten website dan source of truth awal untuk lib/store.ts. Data angka/dampak 
+yang berasal dari profil tetap perlu divalidasi kembali oleh pihak klien sebelum tayang publik. 
+0 Pemetaan Isi terhadap Struktur 
+Folder Website 
+Acuan ringkas agar konten dalam brief selaras dengan rute 
+publik dan komponen yang sudah disiapkan. 
+ 
+Folder/File Konten Utama Isi yang Disarankan 
+app/(public)/page.tsx Homepage Identitas lembaga, headline, tagline, fokus 
+kerja, highlight dampak, program unggulan, 
+partner, dan CTA kolaborasi. 
+app/(public)/about/page.tsx About Tentang kami, visi, misi, nilai 
+BESTARINUSA, fokus kerja, serta 
+ringkasan project portfolio. 
+app/(public)/programs/page.tsx Programs Galeri program inovasi sosial 2023-2026: 
+mangrove, green involvement, green space, 
+zero waste, UMKM, air bersih, dan nanas 
+kelekar. 
+app/(public)/team/page.tsx Team Daftar Direktur, Senior Researcher, 
+Assistant & Junior Researcher beserta 
+keahlian dan pendidikan. 
+app/(public)/news/page.tsx News Berita kegiatan, cerita lapangan, insight riset 
+sosial, dan artikel program. 
+app/(public)/contact/page.tsx Contact Email resmi, Instagram, LinkedIn, 
+alamat/WhatsApp jika sudah dikonfirmasi, 
+--- Page 2 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+serta CTA kolaborasi. 
+components/public/footer.tsx Footer Slogan, kontak resmi, link media sosial, 
+layanan/fokus kerja, dan copyright. 
+components/public/partner-marquee.tsx Partners Logo/nama mitra yang tercantum di profile 
+dan program. 
+components/public/program-card.tsx Program cards Nama program, kategori, lokasi, 
+tahun/status, dan ringkasan dampak. 
+components/public/focus-area-card.tsx Focus areas Social Research, Community Development, 
+Environmental Sustainability. 
+lib/store.ts Source of Truth Data Lokal siteIdentity, focusAreas, values, 
+teamMembers, projectPortfolio, programs, 
+impactMetrics, partners, articleIdeas, 
+contact. 
+A Informasi Dasar Proyek 
+Data umum yang diperlukan untuk membuka proses 
+perancangan website. 
+ 
+Nama lembaga Bestari Nusa Foundation 
+Nama legal/organisasi Berdaya Lestari Nusantara Foundation 
+Penanggung jawab utama Perlu konfirmasi: nama, jabatan, nomor kontak PIC klien. 
+Target rilis Perlu konfirmasi. Rekomendasi diisi sesuai kesiapan konten, aset 
+foto, dan validasi data. 
+Prioritas utama Profil lembaga, kredibilitas riset/program, publikasi kegiatan, 
+portofolio proyek, dampak program, partner kolaborasi, dan kanal 
+kontak resmi. 
+B Profil Singkat Lembaga 
+Narasi dasar untuk halaman About dan copywriting utama 
+website. 
+ 
+Draft narasi final Berdaya Lestari Nusantara Foundation adalah lembaga sosial, riset, 
+dan edukasi yang berfokus pada pelibatan dan pengembangan 
+masyarakat serta pelestarian lingkungan. Melalui program 
+pendidikan, penguatan ekonomi, pengembangan kapasitas, dan 
+kegiatan berkelanjutan, Bestari Nusa Foundation hadir untuk 
+menciptakan dampak positif bagi masyarakat dan lingkungan 
+secara berkelanjutan. 
+Versi singkat untuk homepage Bestari Nusa Foundation menghubungkan riset sosial, 
+pemberdayaan masyarakat, dan keberlanjutan lingkungan menjadi 
+aksi nyata yang berdampak. 
+Tahun berdiri Perlu konfirmasi. Tidak tercantum secara eksplisit dalam Profile 
+2026. 
+Latar belakang berdiri Perlu konfirmasi detail historis. Dari profil, arah lembaga lahir dari 
+kebutuhan menghadirkan riset sosial, edukasi, pemberdayaan 
+ekonomi, pengembangan kapasitas, dan pelestarian lingkungan 
+yang berdampak jangka panjang. 
+--- Page 3 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+Nilai utama Balance, Empowerment, Sustainability, Trust, Accountability, 
+Resilience, Integrity, Novelty, Utility, Stewardship, Action. 
+Diferensiasi lembaga Menggabungkan kapasitas riset sosial, penyusunan dokumen, 
+social mapping, stakeholder engagement, SROI, program 
+pemberdayaan masyarakat, dan aksi lingkungan berbasis 
+kolaborasi multi-pihak. 
+C Visi, Misi, dan Pesan Utama 
+Digunakan pada halaman About, highlight homepage, dan 
+materi komunikasi. 
+ 
+Visi Creating an Empowered Society and a Sustainable Environment for 
+the Nusantara. / Mewujudkan Masyarakat Berdaya dan Lingkungan 
+Lestari bagi Nusantara. 
+Misi 1 Meningkatkan kapasitas dan resiliensi masyarakat melalui riset 
+sosial, pendidikan, pelatihan, serta penguatan keterampilan untuk 
+menciptakan sumber daya manusia yang produktif dan berdaya 
+saing. 
+Misi 2 Mendorong pemberdayaan ekonomi masyarakat yang berkelanjutan 
+melalui pengembangan usaha lokal, inovasi, serta pemanfaatan 
+potensi daerah secara optimal. 
+Misi 3 Melestarikan lingkungan hidup dan sumber daya alam melalui 
+program konservasi, pengelolaan lingkungan yang berkelanjutan, 
+serta peningkatan kesadaran masyarakat terhadap pentingnya 
+menjaga ekosistem. 
+Misi 4 Membangun kolaborasi dan partisipasi multi-pihak dalam 
+menciptakan pembangunan yang inklusif, berkelanjutan, dan 
+berorientasi pada kesejahteraan masyarakat serta kelestarian 
+lingkungan. 
+Pesan utama Think and Action for Social Research, Community Development and 
+Sustainability. 
+Tone komunikasi Profesional, humanis, berbasis data, kolaboratif, optimistis, kredibel, 
+dan dekat dengan isu sosial-lingkungan. 
+D Tujuan Website dan Target Audiens 
+Membantu menentukan prioritas konten dan pesan utama. 
+ 
+Tujuan Website Keterangan Prioritas 
+Membangun kredibilitas lembaga Menampilkan profil, visi misi, nilai, portofolio 
+proyek, tim ahli, dampak, dokumentasi, dan 
+partner. 
+Tinggi 
+Mempublikasikan kajian/cerita Memuat artikel riset sosial, berita kegiatan, 
+insight lapangan, cerita program, dan 
+publikasi program. 
+Sedang-Tinggi 
+Menampilkan program kerja Memperlihatkan program aktif/selesai, 
+lokasi, status, penerima manfaat, capaian, 
+dan dokumentasi. 
+Tinggi 
+Membuka peluang kolaborasi Menyiapkan jalur inquiry, email, media Tinggi 
+--- Page 4 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+sosial, dan ajakan kerja sama program 
+sosial-lingkungan. 
+ 
+Target Audiens Kebutuhan Informasi Prioritas 
+Donor / CSR / sponsor Profil lembaga, dampak, kredibilitas, 
+portofolio program, partner, dokumentasi, 
+dan kontak kolaborasi. 
+Tinggi 
+Akademisi / peneliti / mahasiswa Kajian, metodologi, social mapping, 
+stakeholder engagement, SROI, insight 
+lapangan, dan peluang kolaborasi riset. 
+Tinggi 
+Relawan / komunitas muda Program yang bisa diikuti, cerita dampak, 
+agenda kegiatan, dokumentasi, dan kontak. 
+Sedang 
+Masyarakat umum Informasi lembaga, program, berita 
+kegiatan, kanal komunikasi resmi, dan 
+media sosial. 
+Sedang 
+E Konten Beranda 
+Konten pembuka yang akan menjadi impresi pertama 
+pengunjung. 
+ 
+Headline utama Mengubah Riset Menjadi Aksi, Aksi Menjadi Dampak 
+Sub-headline Bestari Nusa Foundation menghubungkan riset sosial, 
+pengembangan masyarakat, dan keberlanjutan lingkungan untuk 
+mewujudkan masyarakat berdaya serta lingkungan lestari bagi 
+Nusantara. 
+Alternatif headline berbasis profil Think and Action for Social Research, Community Development and 
+Sustainability. 
+CTA utama Ajukan Kolaborasi / Lihat Program / Baca Kajian. 
+CTA kedua Tentang Bestari Nusa / Hubungi Kami / Unduh Profile. 
+Highlight wajib muncul Tiga fokus kerja: Social Research, Community Development, 
+Sustainability; Visi-misi; Nilai BESTARINUSA; program unggulan; 
+metrik dampak; portofolio proyek; partner; kontak resmi. 
+Catatan visual hero Selaras dengan profil: dominan hijau toska, putih, aksen biru dan 
+hijau; visual kegiatan sosial-lingkungan, dokumentasi lapangan, 
+atau elemen organik modern. 
+F Konten Tentang Kami 
+Digunakan untuk memperkuat kredibilitas dan cerita lembaga. 
+ 
+Sejarah singkat Perlu konfirmasi tahun dan kronologi awal. Narasi sementara: 
+Bestari Nusa Foundation hadir sebagai lembaga sosial, riset, dan 
+edukasi yang mengembangkan program berbasis pelibatan 
+masyarakat, penguatan kapasitas, ekonomi lokal, dan pelestarian 
+lingkungan. 
+Fokus kerja Riset sosial, social mapping, community involvement and 
+development, stakeholder engagement, SROI, pemberdayaan 
+--- Page 5 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+ekonomi, pendidikan, pengembangan kapasitas, konservasi, 
+pengelolaan lingkungan, dan inovasi sosial. 
+Nilai inti BESTARINUSA: Balance, Empowerment, Sustainability, Trust, 
+Accountability, Resilience, Integrity, Novelty, Utility, Stewardship, 
+Action. 
+Sambutan direktur/ketua Perlu konfirmasi jika ingin ditampilkan. Nama direktur pada profil: 
+Yui Zahana, S.Sos., M.Si - Direktur & Senior Researcher. 
+Legalitas/afiliasi Perlu konfirmasi nomor legalitas, bentuk resmi, alamat sekretariat, 
+dan dokumen pendukung jika akan dipublikasikan. 
+Detail Nilai BESTARINUSA 
+Huruf Nilai Makna Konten 
+B Balance Menjaga keseimbangan antara aspek sosial, 
+ekonomi, dan lingkungan dalam setiap 
+program. 
+E Empowerment Mendorong kapasitas, kemandirian, dan 
+daya masyarakat untuk berkembang. 
+S Sustainability Mengutamakan keberlanjutan program, 
+manfaat, dan dampak lingkungan. 
+T Trust Membangun kepercayaan dengan 
+masyarakat, mitra, dan pemangku 
+kepentingan. 
+A Accountability Menjalankan program secara bertanggung 
+jawab, terukur, dan dapat 
+dipertanggungjawabkan. 
+R Resilience Menguatkan ketahanan masyarakat dalam 
+menghadapi perubahan sosial, ekonomi, 
+dan lingkungan. 
+I Integrity Menjaga etika, kejujuran, profesionalitas, 
+dan transparansi kerja. 
+N Novelty Menghadirkan pendekatan baru, inovatif, 
+dan kontekstual dalam menjawab persoalan 
+sosial. 
+U Utility Menghasilkan manfaat nyata bagi 
+masyarakat, mitra, dan lingkungan. 
+S Stewardship Mengelola sumber daya sosial dan 
+lingkungan secara bijak dan bertanggung 
+jawab. 
+A Action Berorientasi pada tindakan nyata dan 
+dampak langsung di lapangan. 
+G Program dan Inisiatif 
+Data dasar halaman Program dan kartu program pada 
+homepage. 
+ 
+Kategori Program Deskripsi Singkat Contoh Materi 
+Community Development Pemberdayaan ekonomi dan sosial 
+masyarakat melalui pendampingan, 
+Nama program, lokasi, penerima manfaat, 
+dokumentasi, capaian. 
+--- Page 6 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+penguatan kapasitas, dan pengembangan 
+potensi lokal. 
+Environmental Action Aksi lingkungan, konservasi, pengelolaan 
+sampah/limbah, edukasi lingkungan, 
+penghijauan, dan adaptasi perubahan iklim. 
+Output kegiatan, dokumentasi, angka 
+dampak, SDGs. 
+Research & Capacity Building Kajian riset, social mapping, stakeholder 
+engagement, SROI, pelatihan, dan 
+penyusunan dokumen. 
+Publikasi, modul, foto pelatihan, ringkasan 
+proyek, testimoni. 
+ 
+Nama Program Kategori Lokasi Status Ringkasan Dampak 
+Energy Youth 
+Movement: Mangrove 
+Conservation for a 
+Sustainability 
+Environment 
+Environmental Action / 
+Community Development 
+Desa Sungsang IV, 
+Banyuasin 
+Selesai - 2023 Pembuatan Pojok Literasi 
+Mangrove, penanaman 
+2.000 bibit mangrove, 
+inovasi sabun alami buah 
+pedada, melibatkan 150 
+relawan dari dosen, 
+mahasiswa FISIP Unsri, 
+dan karyawan PLN. 
+Pengelolaan 
+Konservasi Mangrove 
+Berbasis Masyarakat 
+Environmental Action / 
+Capacity Building 
+Desa Sungsang IV, 
+Banyuasin 
+Selesai - 2024 Penguatan kapasitas 
+kelompok, nursery 
+ground, serta pembuatan 
+modul belajar ekosistem 
+mangrove untuk anak-
+anak SD dan SMP. 
+Ekoeduwisata 
+Mangrove Terpadu 
+Environmental Action / 
+Education 
+Kawasan Mangrove 
+Sungsang IV 
+Selesai - 2024 Pendekatan solusi 
+berbasis aspek sosial-
+ekologi dan ekonomi 
+melalui Pojok Literasi 
+Mangrove dan edukasi 
+flora-fauna kawasan 
+mangrove. 
+Employee Green 
+Involvement 
+Environmental Action Palembang / wilayah 
+kegiatan PLN UIP 
+Sumbagsel 
+Selesai - 2024 Aksi pengumpulan 5.254 
+kg sampah dengan 152 
+relawan dan 4 
+stakeholder; sampah 
+diangkut ke Bank 
+Sampah untuk diolah 
+menjadi kerajinan dan 
+barang berdaya guna. 
+Hari Menanam Pohon 
+Indonesia: Energizing 
+Green Space 
+Environmental Action Lahan non-produktif 
+bekas TPA Kramasan, 
+Palembang 
+Selesai - 2024 Penanaman 1.000 pohon 
+di lahan non-produktif, 
+melibatkan 150 volunteer 
+dari FISIP Unsri, DLH, 
+PLN, dan mahasiswa 
+berbagai universitas di 
+Sumatera Selatan. 
+Kampung Hijau Desa 
+Segayam 
+Community Development 
+/ Environmental Action 
+Desa Segayam Selesai - 2024 Penanaman 500 pohon 
+kebun durian, 
+pengolahan sampah 
+rumah tangga, dan 
+pembuatan sarana 
+budidaya maggot. 
+Zero Waste Warriors Environmental Action / 
+Waste Management 
+Taman dan ruang publik 
+Kota Palembang 
+Selesai - 2025 Penempatan 10 drop box 
+sampah botol plastik 
+terintegrasi Bank 
+Sampah, edukasi bahaya 
+sampah plastik, clean up, 
+dan pelibatan 200 
+peserta/relawan. 
+--- Page 7 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+Ketahanan Pangan dan 
+Pengembangan UMKM 
+Desa Air Sempiang 
+Community Development 
+/ Economic 
+Empowerment 
+Desa Air Sempiang, 
+Bengkulu 
+Selesai - 2025 Pendampingan 
+pengolahan hasil 
+pertanian dan produk 
+lokal bernilai tambah; 
+membina 30 perempuan 
+dalam kelompok UMK 
+Putri Landbouw dengan 
+pendekatan ekonomi 
+sirkuler. 
+Menjaga Air untuk Bumi 
+yang Tangguh 
+Climate Adaptation / 
+Clean Water & Sanitation 
+Kampung Sungai 
+Pedado, Kel. Keramasan, 
+Kec. Kertapati, 
+Palembang 
+Selesai - 2025 Program adaptasi 
+perubahan iklim berupa 
+pembangunan ulang 
+MCK umum, pusat 
+kontrol distribusi air 
+bersih, 2 titik sumur bor 
+kedalaman 30-40 meter, 
+3 titik lampu jalan, taman 
+bunga, dan lahan TOGA. 
+Pendampingan 
+Pengembangan Nanas 
+Kelekar 
+Community Development 
+/ Economic 
+Empowerment 
+Wilayah binaan PT Bukit 
+Asam - perlu konfirmasi 
+detail lokasi 
+Berjalan/Direncanakan - 
+2026 
+Pendampingan 
+pengembangan 
+komoditas lokal Nanas 
+Kelekar sebagai potensi 
+ekonomi daerah binaan 
+PT Bukit Asam. 
+H Data Dampak / Impact Metrics 
+Angka yang dapat ditampilkan sebagai infografis singkat pada 
+website. Tetap perlu validasi klien sebelum dipublikasikan. 
+ 
+Metrik Angka Final Sementara Keterangan / Sumber Data Profile 
+Bibit/pohon ditanam 3.500+ 2.000 bibit mangrove (2023), 1.000 pohon 
+Energizing Green Space (2024), 500 pohon 
+kebun durian Desa Segayam (2024). 
+Sampah terkumpul 5.254 kg Program Employee Green Involvement 
+2024; sampah diangkut ke Bank Sampah 
+untuk diolah menjadi kerajinan dan barang 
+berdaya guna. 
+Peserta/relawan tercatat 652+ 150 relawan mangrove, 152 relawan 
+Employee Green Involvement, 150 volunteer 
+Energizing Green Space, 200 
+peserta/relawan Zero Waste Warriors. 
+Angka ini bersifat akumulasi kegiatan, bukan 
+unique beneficiaries. 
+Drop box sampah botol plastik 10 unit Program Zero Waste Warriors 2025 di 
+taman dan ruang publik Kota Palembang. 
+Perempuan binaan UMKM 30 orang Kelompok UMK Putri Landbouw, Desa Air 
+Sempiang, Bengkulu. 
+Sumur bor air bersih 2 titik Program Menjaga Air untuk Bumi yang 
+Tangguh; kedalaman sekitar 30-40 meter 
+menyesuaikan kondisi geologis dan akuifer. 
+Lampu jalan 3 titik Instalasi penerangan akses jalan pada 
+program Sungai Pedado. 
+Portofolio kajian/dokumen 18+ proyek tercatat Social Mapping, Stakeholder Engagement, 
+dan SROI pada profile. Catatan: satu entri 
+Way Besai tampak berulang, perlu validasi. 
+--- Page 8 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+Program inovasi sosial 2023-2026 10 program tercatat Dari konservasi mangrove, ekoeduwisata, 
+green involvement, penghijauan, zero 
+waste, UMKM, air bersih, hingga nanas 
+kelekar. 
+I Kajian, Cerita, dan Berita 
+Konten editorial untuk halaman artikel atau publikasi. 
+ 
+Jenis konten Kajian riset, cerita lapangan, berita kegiatan, opini/insight, publikasi 
+program, dan dokumentasi dampak. 
+Kategori artikel Riset Sosial, Lingkungan, Pemberdayaan, UMKM, CSR, Komunitas, 
+SDGs, Social Mapping, Stakeholder Engagement, SROI. 
+Gaya penulisan Campuran antara populer-edukatif, storytelling lapangan, dan formal 
+berbasis data untuk kebutuhan kredibilitas donor/CSR/akademisi. 
+Frekuensi update Disarankan setiap selesai kegiatan/program atau minimal bulanan. 
+Perlu konfirmasi kapasitas pengelolaan konten. 
+Judul Awal Artikel/Kajian Kategori Penulis/Narasumber Status Materi 
+Mengubah Riset Sosial 
+Menjadi Aksi Berkelanjutan 
+Riset Sosial / Profil Lembaga Bestari Nusa Foundation Materi dasar tersedia dari profil 
+Membangun Literasi 
+Mangrove di Desa Sungsang 
+IV 
+Lingkungan / Edukasi Tim Program Mangrove Materi dan dokumentasi tersedia 
+Employee Green Involvement: 
+5.254 Kg Sampah Menjadi 
+Barang Berdaya Guna 
+Lingkungan / Waste 
+Management 
+Tim Program Materi tersedia 
+Zero Waste Warriors dan 
+Gerakan Drop Box Botol 
+Plastik di Ruang Publik 
+Palembang 
+Lingkungan / CSR Tim Program Materi tersedia 
+Ketahanan Pangan dan 
+Pengembangan UMKM Putri 
+Landbouw di Desa Air 
+Sempiang 
+Pemberdayaan Ekonomi / 
+UMKM 
+Tim Pendamping Materi tersedia 
+Menjaga Air untuk Bumi yang 
+Tangguh: Akses Air Bersih di 
+Sungai Pedado 
+Adaptasi Iklim / Air Bersih Tim Program Materi tersedia 
+J Tim Pengurus dan Struktur 
+Organisasi 
+Data untuk halaman Team dan kredibilitas lembaga. 
+ 
+Nama Jabatan Keahlian/Divisi Pendidikan/Profil 
+Yui Zahana, S.Sos., M.Si Direktur & Senior Researcher Social Mapping, SROI, 
+Stakeholder Engagement 
+S.Sos Sosiologi Universitas 
+Sriwijaya (2023); M.Si Magister 
+Sosiologi Universitas Sriwijaya 
+(2025) 
+--- Page 9 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+Dinar Try Akbar, S.Sos., M.Si Senior Researcher Social Mapping, Community 
+Involvement and Development 
+S.Sos Sosiologi Universitas 
+Sriwijaya (2023); M.Si Magister 
+Pengelolaan Lingkungan 
+Pascasarjana Unsri (2025); Dr 
+Ilmu Lingkungan Pascasarjana 
+Unsri (Present) 
+Fadila Nur Amalia, S.H., 
+M.I.Pol 
+Senior Researcher Public Policy, Risk Management S.H Hukum Universitas 
+Sriwijaya (2017); M.I.Pol FISIP 
+Universitas Padjadjaran (2024) 
+Maharani, S.Sos Senior Researcher Social Mapping, Social Return 
+on Investment 
+S.Sos Sosiologi Universitas 
+Sriwijaya (2025) 
+Detia Zalyanti, S.Sos Senior Researcher Indeks Kepuasan Masyarakat, 
+Social Return on Investment 
+S.Sos Sosiologi Universitas 
+Sriwijaya (2024); M.Sc PSdK 
+Universitas Gadjah Mada 
+(Present) 
+Wardah Habiba, S.Sos Assistant & Junior Researcher Social Mapping, Stakeholder 
+Engagement 
+S.Sos Sosiologi Universitas 
+Sriwijaya (2026) 
+M. Syaifuddin Aziz, S.Sos Assistant & Junior Researcher Social Mapping, SROI S.Sos Sosiologi Universitas 
+Sriwijaya (2026) 
+Salsabila Nanda F., S.Sos Assistant & Junior Researcher IKM, SROI S.Sos Sosiologi Universitas 
+Sriwijaya (2026) 
+Status foto tim: tersedia pada profile PDF, namun file foto asli per orang tetap perlu dikumpulkan agar kualitas tampilan website lebih baik. 
+K Partner, Mitra, dan Dokumentasi 
+Materi pendukung untuk membangun trust dan memperlihatkan 
+rekam jejak. 
+ 
+Jenis Materi Keterangan Status/Kebutuhan 
+Logo partner/mitra PT PLN UIP Sumbagsel tercantum sebagai 
+collaboration partner; mitra lain muncul dari 
+portofolio dan program. 
+Perlu file logo resmi dan izin tampil. 
+Dokumentasi kegiatan Foto/video program, workshop, 
+pendampingan, konservasi, penghijauan, 
+clean up, dan pembangunan fasilitas. 
+Tersedia di profile; perlu file asli resolusi 
+tinggi. 
+Dokumen publikasi PDF kajian, laporan, modul, policy brief, 
+social mapping, stakeholder engagement, 
+SROI. 
+Perlu konfirmasi dokumen mana yang boleh 
+dipublikasikan. 
+Testimoni/quote Pernyataan dari mitra, peserta, relawan, 
+atau penerima manfaat. 
+Belum tercantum di profile; perlu 
+dikumpulkan. 
+Media coverage Link publikasi media, press release, atau 
+berita eksternal. 
+Perlu konfirmasi. 
+After movie/QR QR after movie untuk program mangrove 
+dan Zero Waste Warriors. 
+Tersedia di profile; perlu link video final. 
+ 
+Daftar Mitra yang Terdeteksi dari Profil 
+• PT PLN UIP Sumbagsel 
+• PT Bukit Asam 
+• Dinas Lingkungan Hidup Palembang / DLH Kota Palembang 
+• FISIP Universitas Sriwijaya 
+--- Page 10 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+• Bank Sampah 
+• PT Pertamina EP 
+• PT Medco E&P Indonesia 
+• PT Pertamina Geothermal Energy 
+• PT PLN Nusantara Power 
+• PT Pusri Palembang 
+• PT Supreme Energy Rantau Dedap 
+• PT Oki Pulp & Paper Mills 
+• PT KPI RDMP RU III Plaju 
+L Arah Visual dan Branding Website 
+Preferensi visual agar desain konsisten dengan identitas 
+Bestari Nusa. 
+ 
+Warna utama Hijau toska/turquoise Bestari Nusa, putih, biru sebagai aksen, hijau 
+terang sebagai aksen, serta dark forest green untuk teks/heading. 
+Kesan visual Minimalist, profesional, humanis, modern, clean, corporate non-
+profit, organik, dan berbasis dokumentasi lapangan. 
+Mode tampilan Light mode sebagai default. Dark mode opsional jika tetap menjaga 
+keterbacaan dan konsistensi brand. 
+Animasi Subtle motion, smooth transition, loading animation ringan, micro-
+interaction, dan tidak berlebihan agar tetap profesional. 
+Aset 3D/visual Boleh menggunakan 3D orb/organic visual di hero, tetapi tetap 
+dipadukan dengan foto kegiatan agar identitas sosial-lingkungan 
+lebih terasa. 
+Navbar Clean, compact, sticky, interaktif, dan tidak terlalu mainstream. 
+Menu disarankan: Home, About, Programs, News, Team, Contact. 
+Referensi visual Perlu konfirmasi 2-3 referensi website yang disukai klien. 
+Checklist aset Logo utama; logo versi putih/dark; brand color final; font/brand 
+guideline; foto kegiatan; foto pengurus; logo mitra; dokumen 
+legalitas; link after movie. 
+M Kontak, Lokasi, dan CTA Kolaborasi 
+Informasi yang akan ditampilkan pada footer, halaman kontak, 
+dan tombol CTA. 
+ 
+Alamat kantor/sekretariat Perlu konfirmasi. Tidak tercantum pada profile PDF. 
+Nomor WhatsApp resmi Perlu konfirmasi. Tidak tercantum pada profile PDF. 
+Email resmi yayasanbestarinusa@gmail.com 
+Instagram bestarinusa.id 
+LinkedIn Berdaya Lestari Nusantara Foundation 
+Twitter/X Perlu konfirmasi jika tersedia. 
+Google Maps Perlu konfirmasi link maps jika lokasi ingin ditampilkan. 
+--- Page 11 ---
+Bestari Nusa - Client Brief Terisi | Disesuaikan dari Profile 2026 
+Dokumen brief pengumpulan kebutuhan konten dan arah visual website 
+CTA kolaborasi Ajukan Kolaborasi / Hubungi Bestari Nusa / Diskusikan Program / 
+Mulai Kolaborasi Berdampak. 
+N Lampiran Konten Project Portfolio 
+Daftar proyek dari Profile 2026 untuk halaman About atau 
+bagian portofolio. 
+ 
+Social Mapping 
+• Kajian Social Mapping PT Buana Sriwijaya Sejahtera Desa Biaro Lamo dan Jadi Mulya Tahun 2021. 
+• Kajian Social Mapping Pengembangan Desa Wisata Padang Bindu Kecamatan Semidang Aji Kabupaten OKU Tahun 
+2022. 
+• Penyusunan Dokumen Kajian Social Mapping Rencana Pembangunan Kilang PT KPI RDMP RU III Plaju Tahun 2022. 
+• Kajian Social Mapping dan Dampak Sosial Wilayah Operasional PT Oki Pulp & Paper Mills Tahun 2023. 
+• Penyusunan Dokumen Social Mapping PT PLN UIP Sumbagsel di Sumatera Selatan Tahun 2024. 
+• Penyusunan Dokumen Social Mapping PT PLN UIP Sumbagsel di Desa Sungsang IV, Banyuasin Tahun 2025. 
+• Kajian Social Mapping PT PLN Nusantara Power wilayah operasional PLTA Way Besai, Lampung Barat Tahun 2025. 
+• Kajian Social Mapping Blok Rimau Kalabau PT Medco E&P Indonesia Desa Lais Utara Tahun 2025. 
+Stakeholder Engagement 
+• Penyusunan Dokumen Stakeholder Engagement dan REA PT Pertamina EP Ramba Field di Musi Banyuasin Tahun 
+2022. 
+• Kajian Stakeholder Engagement PT Medco E&P Kabupaten Musi Banyuasin Tahun 2023. 
+• Kajian Stakeholder Engagement PT Pertamina Geothermal Energy LMB 1 Provinsi Sumatera Selatan Tahun 2024. 
+• Kajian Stakeholder Engagement PT Medco E&P Kabupaten Musi Banyuasin dan Musi Rawas Utara Tahun 2024. 
+• Kajian Stakeholder Engagement Wilayah Operasional PT Pertamina EP Prabumulih Tahun 2025. 
+Social Return on Investment / SROI 
+• Penyusunan Dokumen SROI PT PLN UIP Sumbagsel di Sumatera Selatan, Bangka Belitung, dan Lampung Tahun 2022. 
+• Kajian Social Return on Investment Rumah BUMN Sumsel PT Pusri Palembang Tahun 2023. 
+• Penyusunan Dokumen SROI PT PLN UIP Sumbagsel di Sumatera Selatan Tahun 2024. 
+• Penyusunan Dokumen SROI PT Supreme Energy Rantau Dedap Tahun 2025. 
+• Penyusunan Dokumen SROI PT Medco Energy E&P Suban Area Tahun 2024. 
+O Catatan Validasi Sebelum Publikasi 
+Daftar hal yang perlu dikonfirmasi agar konten final aman 
+dipublikasikan. 
+ 
+• Validasi nama legal resmi, nomor legalitas, alamat sekretariat, dan PIC kontak. 
+• Validasi angka dampak agar tidak ada duplikasi penerima manfaat atau relawan lintas program. 
+• Konfirmasi program mana yang boleh ditampilkan secara publik beserta izin penggunaan nama/logo mitra. 
+• Siapkan foto asli resolusi tinggi untuk program, tim, partner, dan dokumentasi before-after. 
+• Konfirmasi link after movie dari QR code yang tercantum pada profile. 
+• Tentukan apakah dokumen kajian/SROI/social mapping akan dipublikasikan penuh, ringkasan, atau hanya sebagai 
+portofolio tertutup. 
