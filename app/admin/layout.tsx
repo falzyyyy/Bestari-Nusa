@@ -14,7 +14,8 @@ import {
   Sparkles,
   Menu,
   X,
-  FileCode2
+  FileCode2,
+  Settings
 } from "lucide-react";
 import { MockDb } from "@/lib/store";
 import { isSupabaseConfigured, supabase } from "@/lib/supabase";
@@ -26,6 +27,7 @@ const ADMIN_MENU_ITEMS = [
   { label: "Kelola Berita", href: "/admin/news", icon: BookOpen },
   { label: "Kelola Tim", href: "/admin/team", icon: Users },
   { label: "Kelola Partner", href: "/admin/partners", icon: Handshake },
+  { label: "Kelola Halaman", href: "/admin/settings", icon: Settings },
   { label: "Pesan Masuk", href: "/admin/inquiries", icon: Mail }
 ];
 
@@ -107,8 +109,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {/* Logo brand */}
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-[#091213] font-black text-xs">
-                B
+              <div className="w-7 h-7 rounded-full overflow-hidden border border-[#088E92]/20 flex items-center justify-center bg-white shrink-0">
+                <img src="/logo.jpeg" alt="Logo Bestari Nusa" className="w-full h-full object-cover" />
               </div>
               <span className="font-extrabold tracking-tight text-white text-base">
                 Bestari<span className="text-[#00AFB4]">Admin</span>

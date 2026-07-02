@@ -14,15 +14,15 @@ export default function Footer() {
         {/* Brand & Mission column */}
         <div className="space-y-4 md:col-span-1.5">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-[#091213] font-bold text-sm shadow-sm group-hover:rotate-12 transition-transform duration-300">
-              B
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-[#00AFB4]/20 shadow-sm flex items-center justify-center bg-white shrink-0 group-hover:rotate-12 transition-transform duration-300">
+              <img src="/logo.jpeg" alt="Logo Bestari Nusa" className="w-full h-full object-cover" />
             </div>
             <span className="font-bold tracking-tight text-white text-lg">
               Bestari<span className="text-[#00AFB4]">Nusa</span>
             </span>
           </Link>
           <p className="text-sm leading-relaxed text-[#8FA4A6] max-w-sm">
-            Berdaya Lestari Nusantara. Wadah generasi muda untuk mengubah riset sosial menjadi aksi nyata, dan aksi menjadi dampak berkelanjutan bagi nusantara.
+            Think and Action for Social Research, Community Development and Sustainability
           </p>
           <div className="flex items-center gap-3.5 pt-2">
             <a 

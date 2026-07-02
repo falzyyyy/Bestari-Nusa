@@ -4,6 +4,20 @@ import { Providers } from "@/components/providers";
 import BackgroundPatterns from "@/components/public/background-patterns";
 import { Toaster } from "sonner";
 import "./globals.css";
+import fs from "fs";
+import path from "path";
+
+// Auto-copy logo.jpeg to public directory if it's missing
+try {
+  const srcPath = path.join(process.cwd(), "logo.jpeg");
+  const destPath = path.join(process.cwd(), "public", "logo.jpeg");
+  if (fs.existsSync(srcPath)) {
+    fs.copyFileSync(srcPath, destPath);
+  }
+} catch (err) {
+  console.error("Auto-copy of logo failed:", err);
+}
+
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",

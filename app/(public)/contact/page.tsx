@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Mail, Phone, MapPin, Send, CheckCircle, Sparkles, MessageSquare } from "lucide-react";
 import { db } from "@/lib/supabase";
+import { DEFAULT_SITE_SETTINGS } from "@/lib/store";
 
 // Form Validation Schema using Zod
 const contactFormSchema = z.object({
@@ -23,6 +24,21 @@ export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [settings, setSettings] = useState(DEFAULT_SITE_SETTINGS.page_contact);
+
+  useEffect(() => {
+    const loadSettings = async () => {
+      try {
+        const custom = await db.getSiteSetting("page_contact");
+        if (custom) {
+          setSettings(custom);
+        }
+      } catch (e) {
+        console.error("Error loading contact settings", e);
+      }
+    };
+    loadSettings();
+  }, []);
 
   const {
     register,
@@ -72,10 +88,10 @@ export default function ContactPage() {
           HUBUNGI KAMI
         </h4>
         <h1 className="text-4xl md:text-5xl font-black tracking-tight text-foreground">
-          Mari Memulai Kolaborasi
+          {settings.title}
         </h1>
         <p className="text-sm md:text-base text-muted max-w-2xl mx-auto">
-          Mulai dari kemitraan CSR korporat, riset lapangan, hingga partisipasi kerelawanan pemuda. Hub kami siap merespons pesan Anda dalam 1x24 jam.
+          {settings.description}
         </p>
       </section>
 
@@ -96,7 +112,7 @@ export default function ContactPage() {
                 <div>
                   <h5 className="font-bold text-foreground">Sekretariat Bestari</h5>
                   <p className="text-muted text-xs leading-relaxed mt-0.5">
-                    Jl. Merdeka No. 45, Bukit Kecil, Palembang, Sumatera Selatan 30113
+                    {settings.address}
                   </p>
                 </div>
               </div>
@@ -105,7 +121,7 @@ export default function ContactPage() {
                 <Mail className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <h5 className="font-bold text-foreground">Hubungi Email</h5>
-                  <p className="text-muted text-xs mt-0.5">yayasanbestarinusa@gmail.com</p>
+                  <p className="text-muted text-xs mt-0.5">{settings.email}</p>
                 </div>
               </div>
 
@@ -113,7 +129,7 @@ export default function ContactPage() {
                 <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <h5 className="font-bold text-foreground">Layanan WhatsApp</h5>
-                  <p className="text-muted text-xs mt-0.5">+62 821-xxxx-xxxx</p>
+                  <p className="text-muted text-xs mt-0.5">{settings.phone}</p>
                 </div>
               </div>
             </div>

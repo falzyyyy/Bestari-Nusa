@@ -665,6 +665,38 @@ const setStoredData = <T>(key: string, data: T): void => {
   }
 };
 
+export const DEFAULT_SITE_SETTINGS: Record<string, any> = {
+  page_home: {
+    hero_badge: "Think and Action for Social Research, Community Development and Sustainability",
+    hero_title: "Mengubah Riset Menjadi Aksi, Aksi Menjadi Dampak.",
+    hero_description: "Bestari Nusa Foundation menghubungkan riset sosial, pengembangan masyarakat, dan keberlanjutan lingkungan untuk mewujudkan masyarakat berdaya serta lingkungan lestari bagi Nusantara.",
+    about_title: "Menghubungkan Gagasan dan Aksi Lapangan",
+    about_description: "Bestari Nusa Foundation (Berdaya Lestari Nusantara) adalah lembaga sosial, riset, dan edukasi yang berfokus pada pelibatan dan pengembangan masyarakat serta pelestarian lingkungan melalui program pendidikan, penguatan ekonomi, pengembangan kapasitas, serta kegiatan berkelanjutan — dengan semangat mewujudkan masyarakat berdaya dan lingkungan lestari bagi Nusantara."
+  },
+  page_about: {
+    header_title: "Berdaya Lestari Nusantara: Bestari Nusa",
+    header_description: "Berdaya Lestari Nusantara Foundation adalah lembaga sosial, riset, dan edukasi yang berfokus pada pelibatan dan pengembangan masyarakat serta pelestarian lingkungan. Melalui program pendidikan, penguatan ekonomi, pengembangan kapasitas, dan kegiatan berkelanjutan, Bestari Nusa Foundation hadir untuk menciptakan dampak positif bagi masyarakat dan lingkungan secara berkelanjutan.",
+    about_title: "Tentang Kami",
+    about_description_id: "The Berdaya Lestari Nusantara Foundation is a social, research, and educational organization dedicated to community involvement and development, as well as environmental conservation, through educational programs, economic empowerment, capacity building, and sustainable initiatives.",
+    about_description_id_2: "Dengan semangat Mewujudkan Masyarakat Berdaya dan Lingkungan Lestari bagi Nusantara, Yayasan berkomitmen untuk menciptakan dampak positif jangka panjang bagi masyarakat dan kelestarian lingkungan secara berkelanjutan.",
+    visi: "Mewujudkan Masyarakat Berdaya dan Lingkungan Lestari bagi Nusantara",
+    visi_en: "Creating an Empowered Society and a Sustainable Environment for the Nusantara",
+    misi: [
+      "Meningkatkan kapasitas dan resiliensi masyarakat melalui riset sosial, pendidikan, pelatihan, serta penguatan keterampilan untuk menciptakan sumber daya manusia yang produktif dan berdaya saing.",
+      "Mendorong pemberdayaan ekonomi masyarakat yang berkelanjutan melalui pengembangan usaha lokal, inovasi, serta pemanfaatan potensi daerah secara optimal.",
+      "Melestarikan lingkungan hidup dan sumber daya alam melalui program konservasi, pengelolaan lingkungan yang berkelanjutan, serta peningkatan kesadaran masyarakat terhadap pentingnya menjaga ekosistem.",
+      "Membangun kolaborasi dan partisipasi multi-pihak dalam menciptakan pembangunan yang inklusif, berkelanjutan, dan berorientasi pada kesejahteraan masyarakat serta kelestarian lingkungan."
+    ]
+  },
+  page_contact: {
+    title: "Mari Memulai Kolaborasi",
+    description: "Mulai dari kemitraan CSR korporat, riset lapangan, hingga partisipasi kerelawanan pemuda. Hub kami siap merespons pesan Anda dalam 1x24 jam.",
+    address: "Jl. Merdeka No. 45, Bukit Kecil, Palembang, Sumatera Selatan 30113",
+    email: "yayasanbestarinusa@gmail.com",
+    phone: "+62 821-xxxx-xxxx"
+  }
+};
+
 // Database store object
 export const MockDb = {
   getCategories: () => getStoredData('categories', DEFAULT_CATEGORIES),
@@ -690,6 +722,16 @@ export const MockDb = {
 
   getInquiries: () => getStoredData('inquiries', DEFAULT_INQUIRIES),
   saveInquiries: (data: Inquiry[]) => setStoredData('inquiries', data),
+
+  getSiteSetting: (key: string) => {
+    const settings = getStoredData('site_settings', DEFAULT_SITE_SETTINGS);
+    return settings[key] || DEFAULT_SITE_SETTINGS[key];
+  },
+  saveSiteSetting: (key: string, value: any) => {
+    const settings = getStoredData('site_settings', DEFAULT_SITE_SETTINGS);
+    settings[key] = value;
+    setStoredData('site_settings', settings);
+  },
 
   // Auth helper
   getAdminUser: () => ({ email: 'admin@bestarinusa.org', fullName: 'Super Admin' }),

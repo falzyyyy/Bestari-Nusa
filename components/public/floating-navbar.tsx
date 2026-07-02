@@ -50,8 +50,8 @@ export default function FloatingNavbar() {
         >
           {/* Logo Brand */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-sm shadow-sm group-hover:rotate-12 transition-transform duration-300">
-              B
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-border shadow-sm flex items-center justify-center bg-white shrink-0 group-hover:rotate-12 transition-transform duration-300">
+              <img src="/logo.jpeg" alt="Logo Bestari Nusa" className="w-full h-full object-cover" />
             </div>
             <span className="font-bold tracking-tight text-foreground text-base md:text-lg">
               Bestari<span className="text-primary">Nusa</span>

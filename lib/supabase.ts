@@ -433,5 +433,36 @@ export const db = {
       MockDb.saveInquiries(inqs);
       return true;
     }
+  },
+
+  getSiteSetting: async (key: string): Promise<any> => {
+    if (supabase) {
+      const { data, error } = await supabase.from("site_settings").select("*").eq("key", key).maybeSingle();
+      if (error) console.error("Error fetching site setting:", error);
+      if (data) return data.value;
+      
+      const { DEFAULT_SITE_SETTINGS } = await import("./store");
+      return DEFAULT_SITE_SETTINGS[key] || null;
+    } else {
+      return MockDb.getSiteSetting(key);
+    }
+  },
+
+  saveSiteSetting: async (key: string, value: any): Promise<any> => {
+    if (supabase) {
+      const { data: existing } = await supabase.from("site_settings").select("id").eq("key", key).maybeSingle();
+      let query;
+      if (existing) {
+        query = supabase.from("site_settings").update({ value }).eq("key", key).select().single();
+      } else {
+        query = supabase.from("site_settings").insert({ key, value }).select().single();
+      }
+      const { data, error } = await query;
+      if (error) throw error;
+      return data.value;
+    } else {
+      MockDb.saveSiteSetting(key, value);
+      return value;
+    }
   }
 };

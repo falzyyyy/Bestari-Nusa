@@ -84,8 +84,8 @@ export default function LoginPage() {
 
       {/* Header Info */}
       <div className="flex items-center gap-2 max-w-sm mx-auto pt-6">
-        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-[#091213] font-black text-sm">
-          B
+        <div className="w-8 h-8 rounded-full overflow-hidden border border-border flex items-center justify-center bg-white shrink-0">
+          <img src="/logo.jpeg" alt="Logo Bestari Nusa" className="w-full h-full object-cover" />
         </div>
         <span className="font-bold tracking-tight text-white text-base">
           Bestari<span className="text-[#00AFB4]">Nusa</span>

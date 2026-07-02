@@ -7,18 +7,22 @@ import ProgramCard from "@/components/public/program-card";
 import NewsCard from "@/components/public/news-card";
 import ImpactCounter from "@/components/public/impact-counter";
 import PartnerMarquee from "@/components/public/partner-marquee";
+import { DEFAULT_SITE_SETTINGS } from "@/lib/store";
 
 export const revalidate = 60; // Revalidate every minute
 
 export default async function HomePage() {
   // Fetch data from database client
-  const [featuredPrograms, latestPosts, impactMetrics, partners, newsCategories] = await Promise.all([
+  const [featuredPrograms, latestPosts, impactMetrics, partners, newsCategories, customSettings] = await Promise.all([
     db.getPrograms(true),
     db.getPosts(false),
     db.getImpactMetrics(),
     db.getPartners(true),
-    db.getCategories("news")
+    db.getCategories("news"),
+    db.getSiteSetting("page_home")
   ]);
+
+  const settings = customSettings || DEFAULT_SITE_SETTINGS.page_home;
 
   // Take top 3 for news display
   const newsDisplay = latestPosts.slice(0, 3);
@@ -41,18 +45,16 @@ export default async function HomePage() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-soft/80 dark:bg-primary-soft/10 text-primary-dark dark:text-primary border border-primary/20 w-fit">
               <Sparkles className="w-4 h-4 text-primary animate-pulse" />
               <span className="text-[10px] font-bold uppercase tracking-widest">
-                Think and Action for Social Research, Community Development and Sustainability
+                {settings.hero_badge}
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-foreground leading-[1.02] max-w-2xl">
-              Mengubah <span className="font-serif italic font-normal text-primary">Riset</span> <br />
-              Menjadi <span className="text-primary relative inline-block font-semibold">Aksi</span>, <br />
-              Aksi Menjadi <span className="text-primary-dark dark:text-primary relative inline-block font-bold">Dampak</span>.
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground leading-tight max-w-2xl">
+              {settings.hero_title}
             </h1>
 
             <p className="text-sm md:text-base text-muted max-w-xl leading-loose font-sans">
-              Bestari Nusa Foundation menghubungkan riset sosial, pengembangan masyarakat, dan keberlanjutan lingkungan untuk mewujudkan masyarakat berdaya serta lingkungan lestari bagi Nusantara.
+              {settings.hero_description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -111,10 +113,10 @@ export default async function HomePage() {
               TENTANG KAMI
             </h4>
             <h2 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-foreground leading-tight">
-              Menghubungkan <span className="italic font-normal">Gagasan</span> dan Aksi Lapangan
+              {settings.about_title}
             </h2>
             <p className="text-sm md:text-base text-muted leading-loose font-sans">
-              Bestari Nusa Foundation (Berdaya Lestari Nusantara) adalah lembaga sosial, riset, dan edukasi yang berfokus pada pelibatan dan pengembangan masyarakat serta pelestarian lingkungan melalui program pendidikan, penguatan ekonomi, pengembangan kapasitas, serta kegiatan berkelanjutan — dengan semangat mewujudkan masyarakat berdaya dan lingkungan lestari bagi Nusantara.
+              {settings.about_description}
             </p>
             <div className="pt-2">
               <Link
