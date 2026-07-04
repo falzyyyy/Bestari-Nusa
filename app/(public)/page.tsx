@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Sparkles, BookOpen, Target, ShieldCheck } from "lucide-react";
 import { db } from "@/lib/supabase";
-import Hero3DOrb from "@/components/3d/hero-orb";
 import FocusAreaCard from "@/components/public/focus-area-card";
 import ProgramCard from "@/components/public/program-card";
 import NewsCard from "@/components/public/news-card";
@@ -108,44 +107,6 @@ export default async function HomePage() {
                 Pelajari Filosofi & Visi Kami <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FOCUS AREAS */}
-      <section className="py-16 md:py-24 bg-primary-soft/10 dark:bg-primary-soft/5">
-        <div className="max-w-7xl mx-auto px-6 space-y-10 md:space-y-16">
-          
-          {/* Header */}
-          <div className="max-w-2xl space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-primary">
-              FOKUS GERAKAN
-            </h4>
-            <h2 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-foreground">
-              Area Kerja yang Kami Lakukan
-            </h2>
-            <p className="text-sm text-muted leading-relaxed max-w-xl">
-              Melalui kolaborasi pentahelix, kami berfokus pada tiga dimensi pilar utama untuk mendorong kemandirian sosial secara organik.
-            </p>
-          </div>
-
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <FocusAreaCard
-              title="Social Research"
-              description="Melakukan riset sosial partisipatif, social mapping, stakeholder engagement, dan SROI untuk merancang program berbasis data yang tepat sasaran."
-              iconName="research"
-            />
-            <FocusAreaCard
-              title="Community Development"
-              description="Mengembangkan kapasitas masyarakat melalui pemberdayaan ekonomi lokal, penguatan keterampilan, pendampingan UMKM, dan program pendidikan berkelanjutan."
-              iconName="youth"
-            />
-            <FocusAreaCard
-              title="Sustainability"
-              description="Melestarikan lingkungan hidup melalui konservasi mangrove, pengelolaan sampah, penghijauan lahan, serta adaptasi perubahan iklim bersama masyarakat lokal."
-              iconName="sustainability"
-            />
           </div>
         </div>
       </section>

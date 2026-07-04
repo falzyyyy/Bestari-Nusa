@@ -377,7 +377,7 @@ export default function PartnersCrud() {
                     <td className="p-4 shrink-0">
                       <div className="w-14 h-8 rounded bg-primary-soft/20 border border-border flex items-center justify-center p-1.5">
                         {partner.logo ? (
-                          <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain filter grayscale dark:invert" />
+                          <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain" />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-primary">
                             <Handshake className="w-5 h-5" />

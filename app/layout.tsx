@@ -4,22 +4,6 @@ import { Providers } from "@/components/providers";
 import BackgroundPatterns from "@/components/public/background-patterns";
 import { Toaster } from "sonner";
 import "./globals.css";
-import fs from "fs";
-import path from "path";
-
-// Auto-copy logo.jpeg to public directory and favicon
-try {
-  const srcPath = path.join(process.cwd(), "logo.jpeg");
-  const destLogoPath = path.join(process.cwd(), "public", "logo.jpeg");
-  const destFaviconPath = path.join(process.cwd(), "public", "favicon.ico");
-  if (fs.existsSync(srcPath)) {
-    fs.copyFileSync(srcPath, destLogoPath);
-    fs.copyFileSync(srcPath, destFaviconPath);
-  }
-} catch (err) {
-  console.error("Auto-copy of logo failed:", err);
-}
-
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
