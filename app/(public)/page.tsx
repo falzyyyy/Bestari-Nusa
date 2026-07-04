@@ -36,26 +36,25 @@ export default async function HomePage() {
         <div className="absolute bottom-1/5 right-1/10 w-96 h-96 bg-primary-soft/10 dark:bg-primary-soft/5 rounded-full blur-3xl" />
 
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-          {/* Main Hero Column */}
-          <div className="max-w-4xl flex flex-col space-y-5 md:space-y-6 lg:space-y-8 text-left">
+          <div className="max-w-4xl mx-auto flex flex-col items-center text-center space-y-5 md:space-y-6 lg:space-y-8">
             
             {/* Small Trust Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-soft/80 dark:bg-primary-soft/10 text-primary-dark dark:text-primary border border-primary/20 w-fit">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-soft/80 dark:bg-primary-soft/10 text-primary-dark dark:text-primary border border-primary/20 w-fit mx-auto">
               <Sparkles className="w-4 h-4 text-primary animate-pulse" />
               <span className="text-[10px] font-bold uppercase tracking-widest">
                 {settings.hero_badge}
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground leading-tight max-w-3xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground leading-tight max-w-3xl mx-auto">
               {settings.hero_title}
             </h1>
 
-            <p className="text-sm md:text-base text-muted max-w-2xl leading-loose font-sans">
+            <p className="text-sm md:text-base text-muted max-w-2xl mx-auto leading-loose font-sans">
               {settings.hero_description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row gap-4 pt-2 justify-center w-full sm:w-auto">
               <Link
                 href="/programs"
                 className="flex items-center justify-center gap-2 px-7 py-3.5 bg-primary hover:bg-primary-dark text-[#091213] rounded-full text-sm font-bold transition-all duration-300 shadow-sm hover:scale-[1.02] active:scale-[0.98] cursor-pointer"

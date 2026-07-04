@@ -9,10 +9,10 @@ export default function Footer() {
       {/* Decorative subtle background glow */}
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10" />
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 relative z-10">
         
         {/* Brand & Mission column */}
-        <div className="space-y-4 md:col-span-1.5">
+        <div className="space-y-4 md:col-span-5">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-8 h-8 rounded-full overflow-hidden border border-[#00AFB4]/20 shadow-sm flex items-center justify-center bg-white shrink-0 group-hover:rotate-12 transition-transform duration-300">
               <img src="/logo.jpeg" alt="Logo Bestari Nusa" className="w-full h-full object-cover" />
@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="flex items-center gap-3.5 pt-2">
             <a 
               href="mailto:yayasanbestarinusa@gmail.com" 
-              className="p-2.5 rounded-full bg-white/5 hover:bg-primary/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
+              className="p-2.5 rounded-full bg-white/5 hover:bg-[#00AFB4]/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
               aria-label="Send Email"
             >
               <Mail className="w-4 h-4" />
@@ -36,7 +36,7 @@ export default function Footer() {
               href="https://instagram.com/bestarinusa.id" 
               target="_blank" 
               rel="noreferrer" 
-              className="p-2.5 rounded-full bg-white/5 hover:bg-primary/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
+              className="p-2.5 rounded-full bg-white/5 hover:bg-[#00AFB4]/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
               aria-label="Visit Instagram"
             >
               <Instagram className="w-4 h-4" />
@@ -45,7 +45,7 @@ export default function Footer() {
               href="https://linkedin.com/company/berdaya-lestari-nusantara-foundation" 
               target="_blank" 
               rel="noreferrer" 
-              className="p-2.5 rounded-full bg-white/5 hover:bg-primary/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
+              className="p-2.5 rounded-full bg-white/5 hover:bg-[#00AFB4]/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
               aria-label="Visit LinkedIn"
             >
               <Linkedin className="w-4 h-4" />
@@ -54,7 +54,7 @@ export default function Footer() {
               href="https://wa.me/628123456789" 
               target="_blank" 
               rel="noreferrer" 
-              className="p-2.5 rounded-full bg-white/5 hover:bg-primary/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
+              className="p-2.5 rounded-full bg-white/5 hover:bg-[#00AFB4]/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
               aria-label="Contact WhatsApp"
             >
               <MessageCircle className="w-4 h-4" />
@@ -63,42 +63,41 @@ export default function Footer() {
         </div>
 
         {/* Quick Links Column */}
-        <div className="space-y-4">
+        <div className="space-y-4 md:col-span-3">
           <h4 className="text-xs font-bold tracking-widest uppercase text-white border-l-2 border-[#00AFB4] pl-2.5">
             Navigasi Cepat
           </h4>
           <ul className="space-y-2.5 text-sm">
             <li>
-              <Link href="/" className="text-[#8FA4A6] hover:text-white transition-colors">
+              <Link href="/" className="text-[#8FA4A6] hover:text-primary transition-colors">
                 Beranda
               </Link>
             </li>
             <li>
-              <Link href="/about" className="text-[#8FA4A6] hover:text-white transition-colors">
+              <Link href="/about" className="text-[#8FA4A6] hover:text-primary transition-colors">
                 Tentang Kami
               </Link>
             </li>
             <li>
-              <Link href="/programs" className="text-[#8FA4A6] hover:text-white transition-colors">
+              <Link href="/programs" className="text-[#8FA4A6] hover:text-primary transition-colors">
                 Program Kerja
               </Link>
             </li>
             <li>
-              <Link href="/news" className="text-[#8FA4A6] hover:text-white transition-colors">
+              <Link href="/news" className="text-[#8FA4A6] hover:text-primary transition-colors">
                 Kajian & Cerita
               </Link>
             </li>
             <li>
-              <Link href="/team" className="text-[#8FA4A6] hover:text-white transition-colors">
+              <Link href="/team" className="text-[#8FA4A6] hover:text-primary transition-colors">
                 Pengurus
               </Link>
             </li>
           </ul>
         </div>
 
-
         {/* Contact Info Column */}
-        <div className="space-y-4">
+        <div className="space-y-4 md:col-span-4">
           <h4 className="text-xs font-bold tracking-widest uppercase text-white border-l-2 border-[#00AFB4] pl-2.5">
             Sekretariat
           </h4>

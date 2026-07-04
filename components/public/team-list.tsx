@@ -82,15 +82,21 @@ export default function TeamList({ divisions, allMembers }: TeamListProps) {
                       <ArrowUpRight className="w-4 h-4 shrink-0 opacity-0 group-hover:opacity-100 text-primary transition-opacity duration-500" />
                     </div>
 
-                    {/* Bio */}
-                    {member.bio && (
-                      <p className="text-xs text-muted leading-relaxed line-clamp-3 flex-grow">
-                        {member.bio}
-                      </p>
-                    )}
+                    {/* Bio Container */}
+                    <div className="flex-grow flex flex-col justify-start">
+                      {member.bio ? (
+                        <p className="text-xs text-muted leading-relaxed line-clamp-3">
+                          {member.bio}
+                        </p>
+                      ) : (
+                        <p className="text-xs text-transparent select-none leading-relaxed">
+                          Tidak ada bio singkat.
+                        </p>
+                      )}
+                    </div>
 
                     {/* Footer Info button */}
-                    <div className="pt-3 border-t border-border/25 flex items-center justify-between text-xs font-semibold text-primary group-hover:text-primary-dark transition-colors duration-500">
+                    <div className="pt-3 border-t border-border/25 flex items-center justify-between text-xs font-semibold text-primary group-hover:text-primary-dark transition-colors duration-500 mt-auto">
                       <span>Lihat Bio Lengkap</span>
                       <span className="w-5 h-5 rounded-full bg-primary-soft/50 group-hover:bg-primary group-hover:text-[#091213] flex items-center justify-center transition-all duration-[600ms]">
                         →
