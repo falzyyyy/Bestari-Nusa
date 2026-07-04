@@ -12,10 +12,12 @@ import {
   Loader2, 
   Plus, 
   Trash2, 
-  Sparkles 
+  Sparkles,
+  BarChart3
 } from "lucide-react";
+import { ImpactMetric } from "@/lib/store";
 
-type ActiveTab = "home" | "about" | "contact";
+type ActiveTab = "home" | "about" | "contact" | "impact";
 
 export default function PagesSettings() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("home");
@@ -40,7 +42,8 @@ export default function PagesSettings() {
     about_description_id_2: "",
     visi: "",
     visi_en: "",
-    misi: [] as string[]
+    misi: [] as string[],
+    nilai_utama: [] as Array<{ letter: string; value: string; desc: string }>
   });
 
   // Contact Page State
@@ -52,20 +55,39 @@ export default function PagesSettings() {
     phone: ""
   });
 
+  // Impact Metrics State
+  const [impactData, setImpactData] = useState<ImpactMetric[]>([]);
+  const [deletedImpactIds, setDeletedImpactIds] = useState<string[]>([]);
+
   // Load all settings on mount
   useEffect(() => {
     const loadSettings = async () => {
       setLoading(true);
       try {
-        const [home, about, contact] = await Promise.all([
+        const [home, about, contact, impact] = await Promise.all([
           db.getSiteSetting("page_home"),
           db.getSiteSetting("page_about"),
-          db.getSiteSetting("page_contact")
+          db.getSiteSetting("page_contact"),
+          db.getAllImpactMetricsRaw()
         ]);
 
         if (home) setHomeData(home);
-        if (about) setAboutData(about);
+        if (about) {
+          const { DEFAULT_SITE_SETTINGS } = await import("@/lib/store");
+          setAboutData({
+            header_title: about.header_title || "",
+            header_description: about.header_description || "",
+            about_title: about.about_title || "",
+            about_description_id: about.about_description_id || "",
+            about_description_id_2: about.about_description_id_2 || "",
+            visi: about.visi || "",
+            visi_en: about.visi_en || "",
+            misi: about.misi || [],
+            nilai_utama: about.nilai_utama || DEFAULT_SITE_SETTINGS.page_about.nilai_utama || []
+          });
+        }
         if (contact) setContactData(contact);
+        if (impact) setImpactData(impact);
       } catch (err: any) {
         toast.error("Gagal memuat pengaturan halaman: " + (err.message || err));
       } finally {
@@ -104,10 +126,56 @@ export default function PagesSettings() {
     setAboutData(prev => ({ ...prev, misi: newMisi }));
   };
 
+  const handleNilaiUtamaChange = (index: number, field: "letter" | "value" | "desc", value: string) => {
+    const newNilai = [...aboutData.nilai_utama];
+    newNilai[index] = { ...newNilai[index], [field]: value };
+    setAboutData(prev => ({ ...prev, nilai_utama: newNilai }));
+  };
+
+  const handleAddNilai = () => {
+    setAboutData(prev => ({ ...prev, nilai_utama: [...prev.nilai_utama, { letter: "", value: "", desc: "" }] }));
+  };
+
+  const handleRemoveNilai = (index: number) => {
+    const newNilai = aboutData.nilai_utama.filter((_, i) => i !== index);
+    setAboutData(prev => ({ ...prev, nilai_utama: newNilai }));
+  };
+
   // Handle Contact Input Changes
   const handleContactChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setContactData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Handle Impact Input Changes
+  const handleImpactChange = (index: number, field: keyof ImpactMetric, value: any) => {
+    const newImpacts = [...impactData];
+    newImpacts[index] = { ...newImpacts[index], [field]: value };
+    setImpactData(newImpacts);
+  };
+
+  const handleAddImpact = () => {
+    setImpactData(prev => [
+      ...prev,
+      {
+        id: `imp-temp-${Date.now()}`,
+        label: "",
+        value: 0,
+        suffix: "",
+        description: "",
+        icon: "leaf",
+        order_index: prev.length + 1,
+        is_active: true
+      }
+    ]);
+  };
+
+  const handleRemoveImpact = (index: number) => {
+    const metric = impactData[index];
+    if (metric.id && !metric.id.startsWith("imp-temp-")) {
+      setDeletedImpactIds(prev => [...prev, metric.id]);
+    }
+    setImpactData(prev => prev.filter((_, i) => i !== index));
   };
 
   // Save Settings
@@ -123,6 +191,28 @@ export default function PagesSettings() {
       } else if (tab === "contact") {
         await db.saveSiteSetting("page_contact", contactData);
         toast.success("Konten Hubungi Kami berhasil disimpan!");
+      } else if (tab === "impact") {
+        // 1. Save all active impact metrics
+        await Promise.all(impactData.map((metric, idx) => {
+          const payload = { ...metric, order_index: idx + 1, is_active: true };
+          // If it is a temp id, delete id property so Supabase assigns a UUID or auto-generates it
+          if (payload.id.startsWith("imp-temp-")) {
+            delete (payload as any).id;
+          }
+          return db.saveImpactMetric(payload);
+        }));
+
+        // 2. Deactivate deleted metrics
+        await Promise.all(deletedImpactIds.map(id => 
+          db.saveImpactMetric({ id, is_active: false })
+        ));
+
+        // Reload data to get newly assigned IDs from DB
+        const freshImpact = await db.getAllImpactMetricsRaw();
+        setImpactData(freshImpact);
+        setDeletedImpactIds([]);
+
+        toast.success("Metrik Dampak berhasil disimpan!");
       }
     } catch (err: any) {
       toast.error("Gagal menyimpan data: " + (err.message || err));
@@ -182,6 +272,16 @@ export default function PagesSettings() {
           }`}
         >
           <Phone className="w-4 h-4" /> Hubungi Kami
+        </button>
+        <button
+          onClick={() => setActiveTab("impact")}
+          className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold border-b-2 transition-all cursor-pointer ${
+            activeTab === "impact"
+              ? "border-primary text-primary"
+              : "border-transparent text-muted hover:text-foreground"
+          }`}
+        >
+          <BarChart3 className="w-4 h-4" /> Metrik Dampak
         </button>
       </div>
 
@@ -416,8 +516,61 @@ export default function PagesSettings() {
                         </button>
                       </div>
                     ))}
-                    {aboutData.misi.length === 0 && (
-                      <p className="text-xs text-muted italic py-2 text-center">Belum ada poin misi. Tambahkan satu untuk memulai.</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3 border-t border-border pt-4">
+                  <div className="flex items-center justify-between">
+                    <label className="font-bold text-foreground">Nilai Utama Organisasi (BESTARINUSA)</label>
+                    <button
+                      type="button"
+                      onClick={handleAddNilai}
+                      className="flex items-center gap-1 px-3 py-1 bg-primary-soft/50 text-primary-dark hover:bg-primary-soft text-xs font-bold rounded-lg border border-border"
+                    >
+                      <Plus className="w-3.5 h-3.5" /> Tambah Nilai
+                    </button>
+                  </div>
+
+                  <div className="space-y-3">
+                    {aboutData.nilai_utama?.map((nilai, idx) => (
+                      <div key={idx} className="flex flex-col sm:flex-row gap-2.5 items-start sm:items-center p-3.5 rounded-xl border border-border/80 bg-background/50">
+                        <div className="flex gap-2 w-full sm:w-auto shrink-0 items-center">
+                          <span className="text-xs font-bold text-muted w-6 text-center">{idx + 1}.</span>
+                          <input
+                            type="text"
+                            maxLength={1}
+                            value={nilai.letter}
+                            onChange={(e) => handleNilaiUtamaChange(idx, "letter", e.target.value)}
+                            placeholder="B"
+                            className="w-10 px-2 py-2 text-center bg-background border border-border rounded-lg text-foreground font-black text-sm uppercase"
+                          />
+                          <input
+                            type="text"
+                            value={nilai.value}
+                            onChange={(e) => handleNilaiUtamaChange(idx, "value", e.target.value)}
+                            placeholder="Balance"
+                            className="flex-grow sm:w-36 px-3 py-2 bg-background border border-border rounded-lg text-foreground font-bold text-xs md:text-sm"
+                          />
+                        </div>
+                        <input
+                          type="text"
+                          value={nilai.desc}
+                          onChange={(e) => handleNilaiUtamaChange(idx, "desc", e.target.value)}
+                          placeholder="Deskripsi nilai organisasi..."
+                          className="flex-grow w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground text-xs md:text-sm"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveNilai(idx)}
+                          className="p-2 border border-border bg-red-950/10 hover:bg-red-950/20 text-red-400 rounded-lg shrink-0 self-end sm:self-auto"
+                          title="Hapus Nilai"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                    {(!aboutData.nilai_utama || aboutData.nilai_utama.length === 0) && (
+                      <p className="text-xs text-muted italic py-2 text-center">Belum ada nilai utama. Tambahkan satu untuk memulai.</p>
                     )}
                   </div>
                 </div>
@@ -522,6 +675,123 @@ export default function PagesSettings() {
                 >
                   {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   Simpan Konten Hubungi Kami
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          {activeTab === "impact" && (
+            <motion.div
+              key="impact"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-6"
+            >
+              <div className="flex items-center justify-between border-b border-border pb-3">
+                <h3 className="text-sm md:text-base font-bold text-foreground flex items-center gap-2">
+                  <BarChart3 className="w-4 h-4 text-primary" /> Kelola Metrik Dampak Organisasi
+                </h3>
+                <button
+                  type="button"
+                  onClick={handleAddImpact}
+                  className="flex items-center gap-1 px-3 py-1 bg-primary-soft/50 text-primary-dark hover:bg-primary-soft text-xs font-bold rounded-lg border border-border"
+                >
+                  <Plus className="w-3.5 h-3.5" /> Tambah Metrik
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                {impactData.map((metric, idx) => (
+                  <div key={metric.id || idx} className="p-4 rounded-2xl border border-border/80 bg-background/50 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-primary font-mono">Metrik #{idx + 1}</span>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveImpact(idx)}
+                        className="p-1.5 border border-border bg-red-950/10 hover:bg-red-950/20 text-red-400 rounded-lg"
+                        title="Hapus Metrik"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-muted uppercase">Label Metrik</label>
+                        <input
+                          type="text"
+                          value={metric.label}
+                          onChange={(e) => handleImpactChange(idx, "label", e.target.value)}
+                          placeholder="Contoh: Relawan Terlibat"
+                          className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground text-xs md:text-sm"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-muted uppercase">Nilai Angka</label>
+                        <input
+                          type="number"
+                          value={metric.value}
+                          onChange={(e) => handleImpactChange(idx, "value", parseInt(e.target.value) || 0)}
+                          placeholder="500"
+                          className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground text-xs md:text-sm font-mono"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-muted uppercase">Akhiran (Suffix)</label>
+                        <input
+                          type="text"
+                          value={metric.suffix}
+                          onChange={(e) => handleImpactChange(idx, "suffix", e.target.value)}
+                          placeholder="Contoh: +, + Orang, + Kg"
+                          className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground text-xs md:text-sm font-mono"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-muted uppercase">Deskripsi Singkat</label>
+                        <input
+                          type="text"
+                          value={metric.description}
+                          onChange={(e) => handleImpactChange(idx, "description", e.target.value)}
+                          placeholder="Deskripsi pencapaian metrik..."
+                          className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground text-xs md:text-sm"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-bold text-muted uppercase">Icon Lucide</label>
+                        <select
+                          value={metric.icon}
+                          onChange={(e) => handleImpactChange(idx, "icon", e.target.value)}
+                          className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground text-xs md:text-sm cursor-pointer"
+                        >
+                          <option value="leaf">Leaf (Daun)</option>
+                          <option value="users">Users (Pengguna/Relawan)</option>
+                          <option value="handshake">Handshake (Kerja Sama)</option>
+                          <option value="trash-2">Trash-2 (Sampah)</option>
+                          <option value="trees">Trees (Pohon)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {impactData.length === 0 && (
+                  <p className="text-xs text-muted italic py-6 text-center">Belum ada metrik dampak. Tambahkan metrik di atas.</p>
+                )}
+              </div>
+
+              <div className="flex justify-end pt-4 border-t border-border">
+                <button
+                  onClick={() => handleSave("impact")}
+                  disabled={saving}
+                  className="flex items-center gap-2 px-6 py-2.5 bg-primary hover:bg-primary-dark text-white rounded-xl text-xs font-bold transition-all shadow-sm disabled:opacity-50 cursor-pointer"
+                >
+                  {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                  Simpan Metrik Dampak
                 </button>
               </div>
             </motion.div>

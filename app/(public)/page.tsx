@@ -36,10 +36,9 @@ export default async function HomePage() {
         <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-primary/5 dark:bg-primary/2 rounded-full blur-3xl" />
         <div className="absolute bottom-1/5 right-1/10 w-96 h-96 bg-primary-soft/10 dark:bg-primary-soft/5 rounded-full blur-3xl" />
 
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center w-full relative z-10">
-          
-          {/* Left Text Column */}
-          <div className="md:col-span-7 flex flex-col space-y-5 md:space-y-6 lg:space-y-8 text-left">
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+          {/* Main Hero Column */}
+          <div className="max-w-4xl flex flex-col space-y-5 md:space-y-6 lg:space-y-8 text-left">
             
             {/* Small Trust Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-soft/80 dark:bg-primary-soft/10 text-primary-dark dark:text-primary border border-primary/20 w-fit">
@@ -49,11 +48,11 @@ export default async function HomePage() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground leading-tight max-w-2xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground leading-tight max-w-3xl">
               {settings.hero_title}
             </h1>
 
-            <p className="text-sm md:text-base text-muted max-w-xl leading-loose font-sans">
+            <p className="text-sm md:text-base text-muted max-w-2xl leading-loose font-sans">
               {settings.hero_description}
             </p>
 
@@ -70,23 +69,6 @@ export default async function HomePage() {
               >
                 Ajukan Kolaborasi
               </Link>
-            </div>
-          </div>
-
-          {/* Right 3D Visual Column */}
-          <div className="md:col-span-5 w-full flex items-center justify-center">
-            <div className="w-full max-w-md aspect-square rounded-3xl bg-card/10 dark:bg-card/5 border border-border/40 p-4 shadow-sm relative">
-              {/* Outer decorative floating mini-badges */}
-              <div className="absolute top-8 left-4 p-3 bg-card rounded-2xl border border-border/60 shadow-sm animate-float z-20 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-primary" />
-                <span className="text-[10px] font-bold tracking-wider uppercase">Social Research</span>
-              </div>
-              <div className="absolute bottom-10 right-4 p-3 bg-card rounded-2xl border border-border/60 shadow-sm animate-float z-20 flex items-center gap-2 [animation-delay:2s]">
-                <ShieldCheck className="w-4 h-4 text-primary" />
-                <span className="text-[10px] font-bold tracking-wider uppercase">Sustainability</span>
-              </div>
-
-              <Hero3DOrb />
             </div>
           </div>
         </div>

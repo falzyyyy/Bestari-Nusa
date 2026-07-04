@@ -30,7 +30,7 @@ export default function PartnerMarquee({ partners }: PartnerMarqueeProps) {
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="max-h-12 max-w-full object-contain filter grayscale dark:invert hover:grayscale-0 transition-all duration-300"
+                className="max-h-12 max-w-full object-contain transition-all duration-300"
               />
             ) : (
               <span className="text-sm font-semibold text-muted text-center leading-tight">

@@ -116,19 +116,7 @@ export default async function AboutPage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { letter: "B", value: "Balance", desc: "Menjaga harmoni antara pembangunan sosial, pelestarian lingkungan, dan pertumbuhan ekonomi." },
-            { letter: "E", value: "Empowerment", desc: "Memberdayakan masyarakat untuk mengenali potensi diri dan memimpin kemandirian mereka sendiri." },
-            { letter: "S", value: "Sustainability", desc: "Memastikan setiap inisiatif dan dampak sosial memiliki ketahanan jangka panjang bagi generasi mendatang." },
-            { letter: "T", value: "Trust", desc: "Membangun hubungan yang berlandaskan keterbukaan, kejujuran, dan rasa saling percaya di antara pemangku kepentingan." },
-            { letter: "A", value: "Accountability", desc: "Menjunjung tinggi tanggung jawab atas setiap keputusan, dana, dan dampak dari program yang dijalankan." },
-            { letter: "R", value: "Resilience", desc: "Menumbuhkan kapasitas masyarakat agar tangguh menghadapi perubahan sosial, ekonomi, dan iklim." },
-            { letter: "I", value: "Integrity", desc: "Menjaga konsistensi tindakan dengan nilai-nilai moral, kebenaran ilmiah, dan etika profesional." },
-            { letter: "N", value: "Novelty", desc: "Mendorong inovasi dan pemikiran kreatif dalam memecahkan tantangan sosial serta lingkungan." },
-            { letter: "U", value: "Utility", desc: "Menghasilkan solusi praktis dan program yang memberikan kegunaan serta nilai tambah langsung bagi masyarakat." },
-            { letter: "S", value: "Stewardship", desc: "Menjadi pengelola yang bertanggung jawab terhadap kelestarian alam dan sumber daya bumi Nusantara." },
-            { letter: "A", value: "Action", desc: "Menerjemahkan gagasan akademik dan hasil riset sosial ke dalam langkah konkret yang membawa perubahan nyata." }
-          ].map((item, idx) => (
+          {(settings.nilai_utama || DEFAULT_SITE_SETTINGS.page_about.nilai_utama).map((item: any, idx: number) => (
             <div key={idx} className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-all flex items-start gap-4 shadow-sm group">
               <div className="w-12 h-12 rounded-xl bg-primary-soft/50 dark:bg-primary-soft/10 text-primary flex items-center justify-center shrink-0 font-serif text-2xl font-bold tracking-tight border border-primary/20 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 {item.letter}

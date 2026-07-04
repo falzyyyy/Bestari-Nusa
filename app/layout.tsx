@@ -7,12 +7,14 @@ import "./globals.css";
 import fs from "fs";
 import path from "path";
 
-// Auto-copy logo.jpeg to public directory if it's missing
+// Auto-copy logo.jpeg to public directory and favicon
 try {
   const srcPath = path.join(process.cwd(), "logo.jpeg");
-  const destPath = path.join(process.cwd(), "public", "logo.jpeg");
+  const destLogoPath = path.join(process.cwd(), "public", "logo.jpeg");
+  const destFaviconPath = path.join(process.cwd(), "public", "favicon.ico");
   if (fs.existsSync(srcPath)) {
-    fs.copyFileSync(srcPath, destPath);
+    fs.copyFileSync(srcPath, destLogoPath);
+    fs.copyFileSync(srcPath, destFaviconPath);
   }
 } catch (err) {
   console.error("Auto-copy of logo failed:", err);
@@ -62,7 +64,9 @@ export const metadata: Metadata = {
     description: "Komunitas kolaborasi pemuda untuk perubahan sosial berkelanjutan berbasis riset, aksi, dan keberlanjutan."
   },
   icons: {
-    icon: "/favicon.ico"
+    icon: "/logo.jpeg",
+    shortcut: "/logo.jpeg",
+    apple: "/logo.jpeg"
   }
 };
 

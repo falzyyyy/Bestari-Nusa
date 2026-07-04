@@ -9,7 +9,7 @@ export default function Footer() {
       {/* Decorative subtle background glow */}
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -z-10" />
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 relative z-10">
         
         {/* Brand & Mission column */}
         <div className="space-y-4 md:col-span-1.5">
@@ -96,19 +96,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Focus Areas Column */}
-        <div className="space-y-4">
-          <h4 className="text-xs font-bold tracking-widest uppercase text-white border-l-2 border-[#00AFB4] pl-2.5">
-            Fokus Gerakan
-          </h4>
-          <ul className="space-y-2.5 text-sm text-[#8FA4A6]">
-            <li>Social Mapping</li>
-            <li>Stakeholder Engagement</li>
-            <li>Social Return on Investment</li>
-            <li>Community Development</li>
-            <li>Sustainability & Konservasi</li>
-          </ul>
-        </div>
 
         {/* Contact Info Column */}
         <div className="space-y-4">

@@ -685,7 +685,20 @@ export const DEFAULT_SITE_SETTINGS: Record<string, any> = {
       "Meningkatkan kapasitas dan resiliensi masyarakat melalui riset sosial, pendidikan, pelatihan, serta penguatan keterampilan untuk menciptakan sumber daya manusia yang produktif dan berdaya saing.",
       "Mendorong pemberdayaan ekonomi masyarakat yang berkelanjutan melalui pengembangan usaha lokal, inovasi, serta pemanfaatan potensi daerah secara optimal.",
       "Melestarikan lingkungan hidup dan sumber daya alam melalui program konservasi, pengelolaan lingkungan yang berkelanjutan, serta peningkatan kesadaran masyarakat terhadap pentingnya menjaga ekosistem.",
-      "Membangun kolaborasi dan partisipasi multi-pihak dalam menciptakan pembangunan yang inklusif, berkelanjutan, dan berorientasi pada kesejahteraan masyarakat serta kelestarian lingkungan."
+      "Membangun kolaborasi dan partisipasi multi-pihak dalam menciptakan pembangunan yang inklusif, berkelanjutan, and berorientasi pada kesejahteraan masyarakat serta kelestarian lingkungan."
+    ],
+    nilai_utama: [
+      { letter: "B", value: "Balance", desc: "Menjaga harmoni antara pembangunan sosial, pelestarian lingkungan, dan pertumbuhan ekonomi." },
+      { letter: "E", value: "Empowerment", desc: "Memberdayakan masyarakat untuk mengenali potensi diri dan memimpin kemandirian mereka sendiri." },
+      { letter: "S", value: "Sustainability", desc: "Memastikan setiap inisiatif dan dampak sosial memiliki ketahanan jangka panjang bagi generasi mendatang." },
+      { letter: "T", value: "Trust", desc: "Membangun hubungan yang berlandaskan keterbukaan, kejujuran, dan rasa saling percaya di antara pemangku kepentingan." },
+      { letter: "A", value: "Accountability", desc: "Menjunjung tinggi tanggung jawab atas setiap keputusan, dana, dan dampak dari program yang dijalankan." },
+      { letter: "R", value: "Resilience", desc: "Menumbuhkan kapasitas masyarakat agar tangguh menghadapi perubahan sosial, ekonomi, dan iklim." },
+      { letter: "I", value: "Integrity", desc: "Menjaga konsistensi tindakan dengan nilai-nilai moral, kebenaran ilmiah, dan etika profesional." },
+      { letter: "N", value: "Novelty", desc: "Mendorong inovasi dan pemikiran kreatif dalam memecahkan tantangan sosial serta lingkungan." },
+      { letter: "U", value: "Utility", desc: "Menghasilkan solusi praktis dan program yang memberikan kegunaan serta nilai tambah langsung bagi masyarakat." },
+      { letter: "S", value: "Stewardship", desc: "Menjadi pengelola yang bertanggung jawab terhadap kelestarian alam dan sumber daya bumi Nusantara." },
+      { letter: "A", value: "Action", desc: "Menerjemahkan gagasan akademik dan hasil riset sosial ke dalam langkah konkret yang membawa perubahan nyata." }
     ]
   },
   page_contact: {
