@@ -27,7 +27,7 @@ export default function TeamList({ divisions, allMembers }: TeamListProps) {
       {/* Members Grid — all members shown side by side, no division grouping */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {allMembers.map((member) => {
-          const divisionName = divisionNameById.get(member.division_id) ?? "";
+          const divisionName = member.division_id ? (divisionNameById.get(member.division_id) ?? "") : "";
 
           return (
             <div

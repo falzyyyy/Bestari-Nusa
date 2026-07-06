@@ -74,9 +74,7 @@ export default function TeamCrud() {
       ]);
       setMembers(allMembers);
       setDivisions(allDivs);
-      if (allDivs.length > 0) {
-        setFormData(prev => ({ ...prev, division_id: allDivs[0].id }));
-      }
+
     } catch (e) {
       console.error(e);
     } finally {
@@ -103,7 +101,7 @@ export default function TeamCrud() {
       name: "",
       slug: "",
       position: "",
-      division_id: divisions[0]?.id || "",
+      division_id: "",
       photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300&h=300",
       bio: "",
       email: "",
@@ -152,6 +150,7 @@ export default function TeamCrud() {
 
     const submitData = {
       ...formData,
+      division_id: formData.division_id || null,
       social_links: {
         linkedin: linkedinUrl.trim() || undefined,
         instagram: instagramUrl.trim() || undefined,
@@ -269,20 +268,7 @@ export default function TeamCrud() {
                 />
               </div>
 
-              {/* Division */}
-              <div className="space-y-1.5">
-                <label className="font-bold text-foreground">Divisi Organisasi *</label>
-                <select
-                  name="division_id"
-                  value={formData.division_id}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-2.5 bg-card border border-border rounded-xl text-foreground"
-                >
-                  {divisions.map(div => (
-                    <option key={div.id} value={div.id}>{div.name}</option>
-                  ))}
-                </select>
-              </div>
+
 
               {/* Photo & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">

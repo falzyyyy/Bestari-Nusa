@@ -73,7 +73,7 @@ export interface TeamMember {
   name: string;
   slug: string;
   position: string;
-  division_id: string;
+  division_id?: string | null;
   photo: string;
   bio: string;
   email: string;

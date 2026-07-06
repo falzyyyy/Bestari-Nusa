@@ -504,6 +504,40 @@ create policy "Admins can read inquiries"
 create policy "Admins can update inquiries"
   on public.inquiries for update to authenticated using (public.is_admin()) with check (public.is_admin());
 
+-- Site Settings Policies
+create policy "Public can read site settings"
+  on public.site_settings for select using (true);
+create policy "Admins can manage site settings"
+  on public.site_settings for all to authenticated using (public.is_admin()) with check (public.is_admin());
+
+-- Pages Policies
+create policy "Public can read published pages"
+  on public.pages for select using (status = 'published');
+create policy "Admins can manage pages"
+  on public.pages for all to authenticated using (public.can_edit_content()) with check (public.can_edit_content());
+
+-- Media Assets Policies
+create policy "Public can read media assets"
+  on public.media_assets for select using (true);
+create policy "Admins can manage media assets"
+  on public.media_assets for all to authenticated using (public.can_edit_content()) with check (public.can_edit_content());
+
+-- Post Tags Policies
+create policy "Public can read post tags"
+  on public.post_tags for select using (true);
+create policy "Admins can manage post tags"
+  on public.post_tags for all to authenticated using (public.can_edit_content()) with check (public.can_edit_content());
+
+-- Program Gallery Policies
+create policy "Public can read program gallery"
+  on public.program_gallery for select using (true);
+create policy "Admins can manage program gallery"
+  on public.program_gallery for all to authenticated using (public.can_edit_content()) with check (public.can_edit_content());
+
+-- Audit Logs Policies
+create policy "Admins can manage audit logs"
+  on public.audit_logs for all to authenticated using (public.is_admin()) with check (public.is_admin());
+
 -- ----------------------------------------------------
 -- Indexes
 -- ----------------------------------------------------
