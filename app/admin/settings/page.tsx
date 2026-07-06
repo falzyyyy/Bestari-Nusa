@@ -202,9 +202,9 @@ export default function PagesSettings() {
           return db.saveImpactMetric(payload);
         }));
 
-        // 2. Deactivate deleted metrics
+        // 2. Delete removed metrics
         await Promise.all(deletedImpactIds.map(id => 
-          db.saveImpactMetric({ id, is_active: false })
+          db.deleteImpactMetric(id)
         ));
 
         // Reload data to get newly assigned IDs from DB

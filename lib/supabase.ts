@@ -146,6 +146,17 @@ export const db = {
     }
   },
 
+  deleteImpactMetric: async (id: string): Promise<boolean> => {
+    if (supabase) {
+      const { error } = await supabase.from("impact_metrics").delete().eq("id", id);
+      return !error;
+    } else {
+      const metrics = MockDb.getImpactMetrics().filter(m => m.id !== id);
+      MockDb.saveImpactMetrics(metrics);
+      return true;
+    }
+  },
+
   // Programs
   getPrograms: async (featuredOnly = false, categorySlug?: string): Promise<Program[]> => {
     if (supabase) {

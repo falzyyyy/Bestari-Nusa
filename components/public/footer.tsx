@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { Mail, MessageCircle, MapPin, Heart } from "lucide-react";
 import { Instagram, Linkedin } from "@/components/ui/icons";
+import { db } from "@/lib/supabase";
+import { DEFAULT_SITE_SETTINGS } from "@/lib/store";
 
-export default function Footer() {
+export default async function Footer() {
+  const contactData = await db.getSiteSetting("page_contact") || DEFAULT_SITE_SETTINGS.page_contact;
+  const whatsappNumber = (contactData.phone || "628123456789").replace(/[^0-9]/g, "");
+
   return (
     <footer className="w-full bg-[#091213] dark:bg-[#050B0C] text-[#E7ECEC]/90 border-t border-[#00AFB4]/15 py-12 md:py-16 mt-auto font-sans relative overflow-hidden">
       
@@ -26,7 +31,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-3.5 pt-2">
             <a 
-              href="mailto:yayasanbestarinusa@gmail.com" 
+              href={`mailto:${contactData.email}`} 
               className="p-2.5 rounded-full bg-white/5 hover:bg-[#00AFB4]/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
               aria-label="Send Email"
             >
@@ -51,7 +56,7 @@ export default function Footer() {
               <Linkedin className="w-4 h-4" />
             </a>
             <a 
-              href="https://wa.me/628123456789" 
+              href={`https://wa.me/${whatsappNumber}`} 
               target="_blank" 
               rel="noreferrer" 
               className="p-2.5 rounded-full bg-white/5 hover:bg-[#00AFB4]/20 text-[#00AFB4] hover:text-white transition-all duration-300 border border-white/5"
@@ -104,11 +109,11 @@ export default function Footer() {
           <div className="space-y-3.5 text-sm">
             <div className="flex items-start gap-2.5 text-[#8FA4A6]">
               <MapPin className="w-5 h-5 text-[#00AFB4] shrink-0 mt-0.5" />
-              <span>Jl. Merdeka No. 45, Bukit Kecil, Palembang, Sumatera Selatan 30113</span>
+              <span>{contactData.address}</span>
             </div>
             <div className="flex items-center gap-2.5 text-[#8FA4A6]">
               <Mail className="w-4 h-4 text-[#00AFB4]" />
-              <span>yayasanbestarinusa@gmail.com</span>
+              <span>{contactData.email}</span>
             </div>
           </div>
         </div>
