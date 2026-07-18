@@ -95,6 +95,20 @@ export default function ContactPage() {
         </p>
       </section>
 
+      {/* 2. Visual Banner (Optional/Customizable) */}
+      {settings.header_image && (
+        <section className="max-w-6xl mx-auto px-6">
+          <div className="aspect-[21/9] w-full rounded-3xl overflow-hidden border border-border shadow-md relative">
+            <img
+              src={settings.header_image}
+              alt="Hubungi Bestari Nusa"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
+          </div>
+        </section>
+      )}
+
       {/* Main Grid */}
       <section className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         
@@ -134,16 +148,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Google Map mock frame */}
-            <div className="aspect-video w-full rounded-xl overflow-hidden border border-border/60 bg-primary-soft/10 relative">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
-                <MapPin className="w-8 h-8 text-primary animate-bounce mb-1" />
-                <span className="text-xs font-bold text-foreground">Peta Lokasi Kantor</span>
-                <span className="text-[10px] text-muted">Palembang, Sumatera Selatan</span>
-              </div>
-              {/* Fallback pattern */}
-              <div className="w-full h-full bg-[radial-gradient(#7a9a5e_1px,transparent_1px)] [background-size:16px_16px] opacity-20" />
-            </div>
+
 
           </div>
 

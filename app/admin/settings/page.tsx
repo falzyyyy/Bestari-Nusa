@@ -23,6 +23,7 @@ export default function PagesSettings() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("home");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [uploadingField, setUploadingField] = useState<"home" | "about" | "contact" | null>(null);
 
   // Home Page State
   const [homeData, setHomeData] = useState({
@@ -30,13 +31,15 @@ export default function PagesSettings() {
     hero_title: "",
     hero_description: "",
     about_title: "",
-    about_description: ""
+    about_description: "",
+    about_image: ""
   });
 
   // About Page State
   const [aboutData, setAboutData] = useState({
     header_title: "",
     header_description: "",
+    header_image: "",
     about_title: "",
     about_description_id: "",
     about_description_id_2: "",
@@ -50,10 +53,33 @@ export default function PagesSettings() {
   const [contactData, setContactData] = useState({
     title: "",
     description: "",
+    header_image: "",
     address: "",
     email: "",
     phone: ""
   });
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, target: "home" | "about" | "contact") => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingField(target);
+    try {
+      const { uploadImage } = await import("@/lib/upload");
+      const url = await uploadImage(file);
+      if (target === "home") {
+        setHomeData(prev => ({ ...prev, about_image: url }));
+      } else if (target === "about") {
+        setAboutData(prev => ({ ...prev, header_image: url }));
+      } else if (target === "contact") {
+        setContactData(prev => ({ ...prev, header_image: url }));
+      }
+      toast.success("Gambar berhasil diunggah!");
+    } catch (err: any) {
+      toast.error(err.message || "Gagal mengunggah gambar");
+    } finally {
+      setUploadingField(null);
+    }
+  };
 
   // Impact Metrics State
   const [impactData, setImpactData] = useState<ImpactMetric[]>([]);
@@ -71,12 +97,22 @@ export default function PagesSettings() {
           db.getAllImpactMetricsRaw()
         ]);
 
-        if (home) setHomeData(home);
+        if (home) {
+          setHomeData({
+            hero_badge: home.hero_badge || "",
+            hero_title: home.hero_title || "",
+            hero_description: home.hero_description || "",
+            about_title: home.about_title || "",
+            about_description: home.about_description || "",
+            about_image: home.about_image || ""
+          });
+        }
         if (about) {
           const { DEFAULT_SITE_SETTINGS } = await import("@/lib/store");
           setAboutData({
             header_title: about.header_title || "",
             header_description: about.header_description || "",
+            header_image: about.header_image || "",
             about_title: about.about_title || "",
             about_description_id: about.about_description_id || "",
             about_description_id_2: about.about_description_id_2 || "",
@@ -86,7 +122,16 @@ export default function PagesSettings() {
             nilai_utama: about.nilai_utama || DEFAULT_SITE_SETTINGS.page_about.nilai_utama || []
           });
         }
-        if (contact) setContactData(contact);
+        if (contact) {
+          setContactData({
+            title: contact.title || "",
+            description: contact.description || "",
+            header_image: contact.header_image || "",
+            address: contact.address || "",
+            email: contact.email || "",
+            phone: contact.phone || ""
+          });
+        }
         if (impact) setImpactData(impact);
       } catch (err: any) {
         toast.error("Gagal memuat pengaturan halaman: " + (err.message || err));
@@ -364,6 +409,32 @@ export default function PagesSettings() {
                       className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-foreground leading-relaxed"
                     />
                   </div>
+
+                  <div className="space-y-1.5">
+                    <label className="font-bold text-foreground flex items-center justify-between">
+                      <span>Gambar Preview Tentang Kami</span>
+                      {uploadingField === "home" && <span className="text-[10px] text-primary animate-pulse">Mengunggah...</span>}
+                    </label>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        name="about_image"
+                        value={homeData.about_image || ""}
+                        onChange={handleHomeChange}
+                        placeholder="https://images.unsplash.com/..."
+                        className="flex-grow px-4 py-2.5 bg-background border border-border rounded-xl text-foreground text-xs"
+                      />
+                      <label className="shrink-0 px-3 py-2.5 bg-primary-soft/40 hover:bg-primary-soft/60 text-primary-dark rounded-xl text-xs font-bold border border-border cursor-pointer flex items-center justify-center">
+                        <span>Pilih File</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleFileUpload(e, "home")}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -431,6 +502,32 @@ export default function PagesSettings() {
                     placeholder="Masukkan deskripsi panjang di bawah judul banner..."
                     className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-foreground leading-relaxed"
                   />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="font-bold text-foreground flex items-center justify-between">
+                    <span>Gambar Banner Header Halaman Tentang</span>
+                    {uploadingField === "about" && <span className="text-[10px] text-primary animate-pulse">Mengunggah...</span>}
+                  </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      name="header_image"
+                      value={aboutData.header_image || ""}
+                      onChange={handleAboutChange}
+                      placeholder="https://images.unsplash.com/..."
+                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-foreground text-xs"
+                    />
+                    <label className="shrink-0 px-3 py-2.5 bg-primary-soft/40 hover:bg-primary-soft/60 text-primary-dark rounded-xl text-xs font-bold border border-border cursor-pointer flex items-center justify-center">
+                      <span>Pilih File</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload(e, "about")}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -627,6 +724,32 @@ export default function PagesSettings() {
                     placeholder="Masukkan deskripsi banner hubungi kami..."
                     className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-foreground leading-relaxed"
                   />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="font-bold text-foreground flex items-center justify-between">
+                    <span>Gambar Banner Header Halaman Kontak (Opsional)</span>
+                    {uploadingField === "contact" && <span className="text-[10px] text-primary animate-pulse">Mengunggah...</span>}
+                  </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      name="header_image"
+                      value={contactData.header_image || ""}
+                      onChange={handleContactChange}
+                      placeholder="https://images.unsplash.com/..."
+                      className="w-full px-4 py-2.5 bg-background border border-border rounded-xl text-foreground text-xs"
+                    />
+                    <label className="shrink-0 px-3 py-2.5 bg-primary-soft/40 hover:bg-primary-soft/60 text-primary-dark rounded-xl text-xs font-bold border border-border cursor-pointer flex items-center justify-center">
+                      <span>Pilih File</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleFileUpload(e, "contact")}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 <div className="space-y-1.5 border-t border-border pt-4">

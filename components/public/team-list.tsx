@@ -60,11 +60,6 @@ export default function TeamList({ divisions, allMembers }: TeamListProps) {
                   <p className="text-xs text-primary font-medium mt-0.5">
                     {member.position}
                   </p>
-                  {divisionName && (
-                    <p className="text-[11px] text-muted mt-0.5">
-                      {divisionName}
-                    </p>
-                  )}
                 </div>
                 <ArrowUpRight className="w-4 h-4 shrink-0 opacity-0 group-hover:opacity-100 text-primary transition-opacity duration-500" />
               </div>

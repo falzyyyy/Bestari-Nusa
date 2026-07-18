@@ -35,7 +35,7 @@ export default async function AboutPage() {
       <section className="max-w-6xl mx-auto px-6">
         <div className="aspect-[21/9] w-full rounded-3xl overflow-hidden border border-border shadow-md relative">
           <img
-            src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=1200&h=500"
+            src={settings.header_image || "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=1200&h=500"}
             alt="Diskusi Pemberdayaan"
             className="w-full h-full object-cover"
           />

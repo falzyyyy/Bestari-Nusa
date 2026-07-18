@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { db } from "@/lib/supabase";
 import ProgramCard from "@/components/public/program-card";
+
+export const revalidate = 60; // Revalidate every minute
 import { BookOpen } from "lucide-react";
 
 export const metadata = {

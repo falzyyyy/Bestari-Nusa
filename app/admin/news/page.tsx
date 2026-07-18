@@ -19,6 +19,7 @@ export default function NewsCrud() {
   const [editingPost, setEditingPost] = useState<Partial<Post> | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [confirmDialog, setConfirmDialog] = useState<{
     isOpen: boolean;
     title: string;
@@ -46,6 +47,23 @@ export default function NewsCrud() {
       setUploading(false);
     }
   };
+
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadingAvatar(true);
+    try {
+      const { uploadImage } = await import("@/lib/upload");
+      const url = await uploadImage(file);
+      setFormData(prev => ({ ...prev, author_avatar: url }));
+      toast.success("Foto penulis berhasil diunggah!");
+    } catch (err: any) {
+      toast.error(err.message || "Gagal mengunggah gambar");
+    } finally {
+      setUploadingAvatar(false);
+    }
+  };
+
   const [formData, setFormData] = useState<Partial<Post>>({
     title: "",
     slug: "",
@@ -55,7 +73,10 @@ export default function NewsCrud() {
     category_id: "",
     status: "draft",
     is_featured: false,
-    reading_time: 3
+    reading_time: 3,
+    author_name: "",
+    author_role: "",
+    author_avatar: ""
   });
 
   // Load Initial Data
@@ -102,7 +123,10 @@ export default function NewsCrud() {
       category_id: categories[0]?.id || "",
       status: "draft",
       is_featured: false,
-      reading_time: 3
+      reading_time: 3,
+      author_name: "",
+      author_role: "",
+      author_avatar: ""
     });
     setIsFormOpen(true);
   };
@@ -334,6 +358,60 @@ export default function NewsCrud() {
                       className="hidden"
                     />
                   </label>
+                </div>
+              </div>
+
+              {/* Kustomisasi Penulis (Author Details) */}
+              <div className="space-y-4 border-t border-border pt-4 mt-4">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-primary">Informasi Penulis (Author)</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="font-semibold text-foreground">Nama Penulis</label>
+                    <input
+                      type="text"
+                      name="author_name"
+                      value={formData.author_name || ""}
+                      onChange={handleInputChange}
+                      placeholder="Contoh: Tim Riset Bestari"
+                      className="w-full px-4 py-2.5 bg-card border border-border rounded-xl text-foreground"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="font-semibold text-foreground">Peran / Kredit Penulis</label>
+                    <input
+                      type="text"
+                      name="author_role"
+                      value={formData.author_role || ""}
+                      onChange={handleInputChange}
+                      placeholder="Contoh: Editor Lapangan"
+                      className="w-full px-4 py-2.5 bg-card border border-border rounded-xl text-foreground"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="font-semibold text-foreground flex items-center justify-between">
+                    <span>Foto / Avatar Penulis</span>
+                    {uploadingAvatar && <span className="text-[10px] text-primary animate-pulse">Mengunggah...</span>}
+                  </label>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      name="author_avatar"
+                      value={formData.author_avatar || ""}
+                      onChange={handleInputChange}
+                      placeholder="https://images.unsplash.com/..."
+                      className="flex-grow px-4 py-2.5 bg-card border border-border rounded-xl text-foreground text-xs"
+                    />
+                    <label className="shrink-0 px-3 py-2.5 bg-primary-soft/40 hover:bg-primary-soft/60 text-primary-dark rounded-xl text-xs font-bold border border-border cursor-pointer flex items-center justify-center">
+                      <span>Pilih File</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarUpload}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
                 </div>
               </div>
 

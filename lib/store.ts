@@ -32,6 +32,9 @@ export interface Post {
   seo_title?: string;
   seo_description?: string;
   reading_time: number;
+  author_name?: string;
+  author_role?: string;
+  author_avatar?: string;
 }
 
 export interface Program {
@@ -671,11 +674,13 @@ export const DEFAULT_SITE_SETTINGS: Record<string, any> = {
     hero_title: "Mengubah Riset Menjadi Aksi, Aksi Menjadi Dampak.",
     hero_description: "Bestari Nusa Foundation menghubungkan riset sosial, pengembangan masyarakat, dan keberlanjutan lingkungan untuk mewujudkan masyarakat berdaya serta lingkungan lestari bagi Nusantara.",
     about_title: "Menghubungkan Gagasan dan Aksi Lapangan",
-    about_description: "Bestari Nusa Foundation (Berdaya Lestari Nusantara) adalah lembaga sosial, riset, dan edukasi yang berfokus pada pelibatan dan pengembangan masyarakat serta pelestarian lingkungan melalui program pendidikan, penguatan ekonomi, pengembangan kapasitas, serta kegiatan berkelanjutan — dengan semangat mewujudkan masyarakat berdaya dan lingkungan lestari bagi Nusantara."
+    about_description: "Bestari Nusa Foundation (Berdaya Lestari Nusantara) adalah lembaga sosial, riset, dan edukasi yang berfokus pada pelibatan dan pengembangan masyarakat serta pelestarian lingkungan melalui program pendidikan, penguatan ekonomi, pengembangan kapasitas, serta kegiatan berkelanjutan — dengan semangat mewujudkan masyarakat berdaya dan lingkungan lestari bagi Nusantara.",
+    about_image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800&h=600"
   },
   page_about: {
     header_title: "Berdaya Lestari Nusantara: Bestari Nusa",
     header_description: "Berdaya Lestari Nusantara Foundation adalah lembaga sosial, riset, dan edukasi yang berfokus pada pelibatan dan pengembangan masyarakat serta pelestarian lingkungan. Melalui program pendidikan, penguatan ekonomi, pengembangan kapasitas, dan kegiatan berkelanjutan, Bestari Nusa Foundation hadir untuk menciptakan dampak positif bagi masyarakat dan lingkungan secara berkelanjutan.",
+    header_image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=1200&h=500",
     about_title: "Tentang Kami",
     about_description_id: "The Berdaya Lestari Nusantara Foundation is a social, research, and educational organization dedicated to community involvement and development, as well as environmental conservation, through educational programs, economic empowerment, capacity building, and sustainable initiatives.",
     about_description_id_2: "Dengan semangat Mewujudkan Masyarakat Berdaya dan Lingkungan Lestari bagi Nusantara, Yayasan berkomitmen untuk menciptakan dampak positif jangka panjang bagi masyarakat dan kelestarian lingkungan secara berkelanjutan.",
@@ -704,6 +709,7 @@ export const DEFAULT_SITE_SETTINGS: Record<string, any> = {
   page_contact: {
     title: "Mari Memulai Kolaborasi",
     description: "Mulai dari kemitraan CSR korporat, riset lapangan, hingga partisipasi kerelawanan pemuda. Hub kami siap merespons pesan Anda dalam 1x24 jam.",
+    header_image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200&h=500",
     address: "Jl. Merdeka No. 45, Bukit Kecil, Palembang, Sumatera Selatan 30113",
     email: "yayasanbestarinusa@gmail.com",
     phone: "+62 821-xxxx-xxxx"

@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+export const revalidate = 60; // Revalidate every minute
 import { Calendar, MapPin, Target, Users, CheckCircle, ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { db } from "@/lib/supabase";
 

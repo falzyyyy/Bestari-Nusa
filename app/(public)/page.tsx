@@ -79,7 +79,7 @@ export default async function HomePage() {
           <div className="md:col-span-5 relative">
             <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden border border-border/60 shadow-sm grayscale hover:grayscale-0 transition-all duration-[800ms] ease-[0.16,1,0.3,1]">
               <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800&h=600"
+                src={settings.about_image || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800&h=600"}
                 alt="Pemuda Bestari Nusa"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-[800ms] ease-[0.16,1,0.3,1]"
               />

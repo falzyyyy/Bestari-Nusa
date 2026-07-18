@@ -190,13 +190,6 @@ export default function TeamModal({
             {/* Right Column: Name, Position, Description */}
             <div className="flex flex-col flex-grow text-left justify-between space-y-6 pt-2">
               <div className="space-y-4">
-                {/* Division Label */}
-                <motion.div variants={itemVariants}>
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-[#00AFB4] bg-[#00AFB4]/10 border border-[#00AFB4]/20 px-3 py-1 rounded-full">
-                    {divisionName || "Pengurus Inti"}
-                  </span>
-                </motion.div>
-
                 {/* Name & Title */}
                 <motion.div variants={itemVariants} className="space-y-1.5">
                   <h2 className="text-xl md:text-2xl font-bold tracking-tight text-foreground leading-tight font-serif">

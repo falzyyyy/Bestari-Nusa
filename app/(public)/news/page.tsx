@@ -2,6 +2,8 @@ import React from "react";
 import { db } from "@/lib/supabase";
 import SearchableNewsList from "@/components/public/searchable-news-list";
 
+export const revalidate = 60; // Revalidate every minute
+
 export const metadata = {
   title: "Kajian & Cerita Dampak",
   description: "Temukan publikasi ilmiah, mapping desa, policy brief, dan kabar berita terbaru dari Bestari Nusa."

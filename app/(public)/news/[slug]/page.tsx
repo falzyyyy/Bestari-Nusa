@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Calendar, Clock, ArrowLeft, Share2, User } from "lucide-react";
+
+export const revalidate = 60; // Revalidate every minute
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { db } from "@/lib/supabase";
@@ -33,10 +35,10 @@ export default async function NewsDetailPage({ params }: PageProps) {
   const categories = await db.getCategories("news");
   const category = categories.find(c => c.id === post.category_id);
 
-  // Fetch author profile if possible (mocking fallback values here)
-  const authorName = "Tim Riset Bestari";
-  const authorRole = "Editor Lapangan";
-  const authorAvatar = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100";
+  // Fetch author profile from post fields with fallback values
+  const authorName = post.author_name || "Tim Riset Bestari";
+  const authorRole = post.author_role || "Editor Lapangan";
+  const authorAvatar = post.author_avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100";
 
   return (
     <div className="w-full py-16 md:py-24 space-y-10">

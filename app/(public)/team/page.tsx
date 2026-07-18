@@ -2,6 +2,8 @@ import React from "react";
 import { db } from "@/lib/supabase";
 import TeamList from "@/components/public/team-list";
 
+export const revalidate = 60; // Revalidate every minute
+
 export const metadata = {
   title: "Struktur Organisasi",
   description: "Kenali pengurus, koordinator riset, dan tim fasilitator pemberdayaan Bestari Nusa."
